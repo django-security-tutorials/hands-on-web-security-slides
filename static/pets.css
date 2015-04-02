@@ -1,0 +1,9 @@
+body {
+	background: #ffe9dc;
+}
+
+h1 {
+	text-transform: lowercase;
+	font-weight: 100;
+	font-size: 48px;
+}
