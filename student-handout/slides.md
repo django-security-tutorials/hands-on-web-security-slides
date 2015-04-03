@@ -22,6 +22,7 @@ Navigate these slides by clicking the right & left arrows at the bottom.
 
 To maximize learning:
 
+- **Never** type on someone else's laptop. Type on yours & show them; then, let them type on theirs.
 * When you discover a peer doesn't know something, _don't_ say "Wow, I can't believe you don't know that!" Just let them learn.
 * When correcting someone, make sure it's useful. "Now is better than never, but sometimes, although never is often better than **right now**."
 * If you offer to help someone, _truly engage_. (By contrast, if you overhear something wrong and say the fix from across the room, you might have actually misheard, and your remark might actually be off-topic.)
