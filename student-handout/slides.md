@@ -24,8 +24,8 @@ To maximize learning:
 
 - **Never** type on someone else's laptop. Type on yours & show them; then, let them type on theirs.
 * When you discover a peer doesn't know something, _don't_ say "Wow, I can't believe you don't know that!" Just let them learn.
-* When correcting someone, make sure it's useful. "Now is better than never, but sometimes, although never is often better than **right now**."
-* If you offer to help someone, _truly engage_. (By contrast, if you overhear something wrong and say the fix from across the room, you might have actually misheard, and your remark might actually be off-topic.)
+* When correcting someone, make sure it's useful. "Now is better than never, although never is often better than **right now**."
+* If you offer to help someone, _truly engage_. (Don't just shout a fix from across the room)
 * Respect people, and their questions, independent of their background, apparent ethnicity, gender, etc.
 
 Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
@@ -35,8 +35,7 @@ Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
 ## How to make the most of these slides
 
 * Each slide explains a category of web app vulnerability that you can use to attack the app.
-* If you have a question, check if that slide has **hints**!
-* Type '`s`' on your keyboard to see the _special hints_.
+* If you have a question, check if that slide has **hints**; type '`s`' on your keyboard to see them.
 * When you've understood one of the attack strategies, then send a private message to your small-group leader on Slack. They may ask you follow-up questions.
 * Look at the **blue bar** at the bottom. It shows your progress through these slides.
 
@@ -47,8 +46,7 @@ Note:
 
 ## Be social
 
-* One more thing: use your small group's Slack channel to _attack your peers_. They will (honestly!) enjoy clicking a link that does something completely surprising.
-* Appreciating surprises is an important part of the security mindset.
+* One more thing: use your small group's Slack channel to share your attacks with your peers. They will (honestly!) enjoy clicking a link that does something completely surprising. Appreciating surprises is an important part of the security mindset.
 * Having said that, don't be malicious. It's OK to send people links that do bad things on the Petwriter site, but don't do things that would cause their computers to lock up, or other bad things that are outside the scope of Petwriter.
 
 
@@ -56,8 +54,7 @@ Note:
 
 ## Black box vs. white box testing
 
-* In this PyCon tutorial, you have the source code for the app. We call that "white box testing."
-* This simulates you being a security engineer at a company.
+* In this PyCon tutorial, you have the source code for the app. We call that "white box testing." This simulates you being a security engineer at a company.
 * "Black box testing", by contrast, assumes you don't have the app's source code.
 * Feel free to constrain yourself by trying not to read the source if you want even more of a challenge.
 * The point of this tutorial, though, is not so much to challenge you to the maximum, but instead to help you become familiar with a variety of security issues. Maximize your learning however works for you.
