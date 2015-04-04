@@ -32,8 +32,8 @@ Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
 ## Make the most of these slides
 
 * Each slide explains a category of web app vulnerability that you can use to attack the app.
-* If you have a question, check if that slide has **hints**; type '`s`' on your keyboard to see them.
-* When you've understood one of the attack strategies, then send a private message to your small-group leader on Slack. They may ask you follow-up questions.
+* If you have a question, check if that slide has **hints**!
+* Type '`s`' on your keyboard to see the _special hints_.
 * Look at the **blue bar** at the bottom. It shows your progress through these slides.
 
 Note:
@@ -45,6 +45,7 @@ Note:
 
 * One more thing: use your small group's Slack channel to share your attacks with your peers. They will (honestly!) enjoy clicking a link that does something completely surprising. Appreciating surprises is an important part of the security mindset.
 * Having said that, don't be malicious. It's OK to send people links that do bad things on the Petwitter site, but don't do things that would cause their computers to lock up, or other bad things that are outside the scope of Petwitter.
+* Appreciating surprises is an important part of the security mindset.
 
 
 ---
