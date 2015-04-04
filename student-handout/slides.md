@@ -405,6 +405,37 @@ References:
 * http://www.balda.ch/posts/2013/Jun/23/python-web-frameworks-pickle/
 * https://github.com/django/django/blob/master/django/contrib/sessions/backends/signed_cookies.py
 
+---
+
+## Insecure dependencies
+
+### Overview (1/2)
+
+* Django apps typically list their dependencies in `requirements.txt`.
+* This app does, too! Take a look in the code for that file.
+* When the app is doing its initial setup, it will get the latest version of each dependency, unless you specify a specific version.
+
+---
+
+## Insecure dependencies
+
+### Overview (2/2)
+
+* It's a good idea to understand what the app's dependencies do, and to read their code before adding them. Otherwise, anything could happen when you add the app.
+* Version numbers matter for this -- if you audit one version, but then the maintainer releases a new version, you'd need to audit the new version, too.
+
+---
+
+## Insecure dependencies
+
+### Your goal
+
+* Figure out if this app has any dependencies that aren't pinned to a specific version, and if the new version from the maintainer introduced a security problem.
+* **Check your work**: Tell your small-group lead which dependency gained a security problem.
+
+Note:
+- You might need to look up the dependency on [pypi](https://pypi.python.org).
+- Your small-group leader will ask you which _which version_ introduced the security problem and what you would do about this.
 
 ---
 
