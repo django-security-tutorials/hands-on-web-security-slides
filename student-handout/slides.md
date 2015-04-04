@@ -206,16 +206,11 @@ Note:
 
 ## Generate session data for other users
 
-### Overview (1/3)
+### Overview (1/4)
 
-As you may recall, HTTP is a "stateless" protocol -- each HTTP request is separate from other ones.
+HTTP is a "stateless" protocol, meaning each HTTP request is separate from other ones.
 
-So let's say you:
-
-* Log in at `/login/`, then
-* Visit the home page (`/') of a website.
-
-The homepage ought to know that you've logged in, so it can customize the homepage just for you.
+So let's say you log in at `/login/` and visit the home page (`/') of a website. The homepage ought to know that you've logged in, so it can customize the homepage just for you.
 
 Since these requests are separate, there must be some way for the `/login/` page to store some information so that `/` can look at it -- at the very least, it needs to store your user ID.
 
@@ -226,32 +221,37 @@ To achieve this, HTTP grew a feature called "Cookies."
 
 ## Generate session data for other users
 
-### Overview (2/3)
+### Overview (2/4)
 
 Here's how cookies typically work:
 
-* When you log in at `/login/`, that page stores a "cookie" in your browser, and
-* When you make any follow-up requests, your browser sends that cookie to the server.
+* When you log in at `/login/`, that page stores a "cookie" in your browser.
+* Then, when you make any follow-up requests, your browser sends that cookie to the server.
 
-The `/` page needs the _user ID_, in order to customize itself. It might need other data, too; typically, it represents the "session data" as a Python dict, e.g.: ```{'user_id' 3}```
+The `/` page needs the _user ID_ in order to customize itself. It might need other data, too; typically, it represents the "session data" as a Python dict, e.g.: ```{'user_id' 3}```
 
 There are two common ways to leverage cookies for this.
-
-One is to use a `session ID` cookie, where the contents of the cookie are a random number. Then when the server processes a request, it checks what _session data_ is associated with the session data, loads that into memory, and hands it to the view functions.
 
 ---
 
 ## Generate session data for other users
 
-### Overview (3/3)
+### Overview (3/4)
+
+One is to use a `session ID` cookie, where the contents of the cookie are a random number. Then when the server processes a request, it checks what _session data_ is associated with the session ID, loads that into memory, and hands it to the view function.
 
 The other common way is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie! This way, the server has to do less work -- it receives the raw session data. No need to look it up in a database from session ID to session _data_.
+
+---
+## Generate session data for other users
+
+### Overview (4/4)
 
 _However_, people's browsers can't really be trusted. So typically the session data is also _signed_ with a secret key. If the user tampers with the session data, the signature won't match.
 
 Django calls this the `signed_cookies` session store. It uses the `SECRET_KEY` config variable to sign the data.
 
-For this app, that  apps's _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.py`. So you can change your session data... for example, changing your `user_id` to someone else's!
+For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.py`. So you can change your session data... for example, changing your `user_id` to someone else's!
 
 ---
 
@@ -300,7 +300,7 @@ Load the data as follows:
 >>> from django.conf import settings
 >>> session_module = import_module(settings.SESSION_ENGINE)
 >>> session_data = session_module.SessionStore(session_key="foo:bar")
-# Use whatever was the sessionid= value from your cookie
+# Use whatever the sessionid= value was from your cookie
 >>> print session_data.load()
 {
     '_auth_user_backend':
@@ -337,7 +337,7 @@ And extract something you can put into your browser:
 
 ## Generate session data for other users
 
-* **Check your learning**: Send a private message to your small-group leader explaining why were you able to generate session data that the server trusted?
+* **Check your learning**: Send a private message to your small-group leader explaining why were you able to generate session data that the server trusted.
 
 ---
 
@@ -346,12 +346,12 @@ And extract something you can put into your browser:
 ### Overview
 
 * Many web apps, behind the scenes, access data from a database by sending SQL queries to it.
-* A sample SQL query: `DELETE from users WHERE user_id=3;`
+* Sample query: `DELETE from users WHERE user_id=3;`
 * If `user_id` were controlled by the attacker, the attacker could change the query to be:
-* `DELETE FROM users WHERE user_id=user_id;`
+```DELETE FROM users WHERE user_id=user_id;```
 * and you'd lose all your user data.
 * SQL mappers like the Django ORM automatically escape parameters, so this might instead be:
-* `DELETE from users WHERE user_id="user_id";`
+```DELETE from users WHERE user_id="user_id";```
 * which would delete nothing.
 
 ---
@@ -381,7 +381,7 @@ Note:
 
 ### Overview
 
-This app uses pickle! If you didn't know that, take a look at the settings file.
+This app uses pickle! Look at the settings file.
 
 Pickle is a way to take Python data, like `{'key': ['val11', 'val2']}` and turn it into a file that can be loaded into Python later.
 
@@ -405,44 +405,13 @@ References:
 * http://www.balda.ch/posts/2013/Jun/23/python-web-frameworks-pickle/
 * https://github.com/django/django/blob/master/django/contrib/sessions/backends/signed_cookies.py
 
----
-
-## Insecure dependencies
-
-### Overview (1/2)
-
-* Django apps typically list their dependencies in `requirements.txt`.
-* This app does, too! Take a look in the code for that file.
-* When the app is doing its initial setup, it will get the latest version of each dependency, unless you specify a specific version.
-
----
-
-## Insecure dependencies
-
-### Overview (2/2)
-
-* It's a good idea to understand what the app's dependencies do, and to read their code before adding them. Otherwise, anything could happen when you add the app.
-* Version numbers matter for this -- if you audit one version, but then the maintainer releases a new version, you'd need to audit the new version, too.
-
----
-
-## Insecure dependencies
-
-### Your goal
-
-* Figure out if this app has any dependencies that aren't pinned to a specific version, and if the new version from the maintainer introduced a security problem.
-* **Check your work**: Tell your small-group lead which dependency gained a security problem.
-
-Note:
-- You might need to look up the dependency on [pypi](https://pypi.python.org).
-- Your small-group leader will ask you which _which version_ introduced the security problem and what you would do about this.
 
 ---
 
 ## Notes for instructors only
 
 - Skip this slide if you're an attendee!
-- If you're an instructor, type '`s`' to see setup setups.
+- If you're an instructor, type '`s`' to see setup steps.
 
 Note:
 
