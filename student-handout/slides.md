@@ -87,7 +87,7 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 ### Sample attack code
 
 - Sample JS: ```< script >alert(1);</ script>```
-- Feel free to Google for [xss cheat sheet] for more.
+- Feel free to Google [xss cheat sheet] for more.
 - Type '`s`' for more suggestions on attack code.
 
 Note:
@@ -100,7 +100,7 @@ Note:
 
 ## Default passwords
 
-Many pieces of software are shipped with easy-to-guess default passwords, with the expectation that whoever installs and administers the software will change the password. Many **admin**s forget this step, however.
+Many pieces of software are shipped with easy-to-guess default passwords, with the expectation that whoever installs and administers the software will change the password. Many admins forget this step, however.
 
 Your goal:
 
@@ -131,10 +131,10 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 ### Your goal
 
-* Ask someone on Slack for a pet ID that isn't yours, and then
+* Ask someone on Slack for a pet ID that isn't yours. Then
 * Modify it somehow.
 * For more hints, press '`s`'
-* **Check your learning**: end a private message to your instructor, saying which function has the bug.
+* **Check your learning**: Send a private message to your instructor, saying which function has the bug.
 
 Note:
 - Use your browser's "Inspect element" feature to change the `form action` on a pet profile page.
@@ -158,10 +158,10 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 ### Overview (2/2)
 
-* If _victim.com_ has CSRF problem, then Alice can make a page on _evil.com_ that, through Bob merely visiting it her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
+* If _victim.com_ has CSRF problem, then Alice can make a page on _evil.com_ that, through Bob merely visiting her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
 * The way cookies work is that they flow with every request Bob makes to _victim.com_.
 * An IMG tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_.
-* So in this way, Alice cause Bob to silently take actions on another site.
+* So in this way, Alice causes Bob to silently take actions on another site.
 
 ---
 
@@ -169,10 +169,11 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 ### Your goal
 
-* **Check your learning**: Create a web page that, when viewed, creates a new pet owned by whoever visits the page. Send a link to your small-group lead.
+* Create a web page that, when viewed, creates a new pet owned by whoever visits the page. 
 * You may want to ***read the app code*** to find a view function that that accepts GET as well as POST.
 * You can use [JSFiddle](https://jsfiddle.net/buec42cq/) for HTML hosting.
 * Press '`s`' for hints.
+* **Check your learning**: Send a link to your small-group lead.
 
 Note:
 - To figure out exactly how to craft the GET URL, start by using _Inspect Element_ to modify the form so that it is `method=GET` on your own computer.
