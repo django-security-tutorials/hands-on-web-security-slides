@@ -7,9 +7,9 @@
 
 ---
 
-# How to turn your computer into a server
+# Turn your computer into a server
 
-## A PyCon talk by Asheesh Laroia & Karen Rustad, 2014
+## Asheesh Laroia & Karen Rustad
 
 Note:
 - So last year at PyCon, a friend and I gave a talk about how to turn a computer into a home server.
