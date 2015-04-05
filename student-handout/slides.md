@@ -6,13 +6,12 @@ Navigate these slides by clicking the right & left arrows at the bottom.
 
 ---
 
-## How to make the most of the lab time
+## Make the most of lab time
 
 * You have 90 minutes -- get some hands-on practice. Work alone or find a buddy.
 * Make sure you know who your small-group lead is!
 * Visit _petwitter.com_ and click the link to get in your small group's Slack channel and app instance.
 * Attack it, with the help of these slides.
-* Be social, on your group's Slack chat room.
 * Once you've done an attack, send a private message to your small-group leader saying so.
 * Some attacks are labeled **extra credit**; if you're new to security, I encourage you to skip those so you can get to all the important attacks.
 
