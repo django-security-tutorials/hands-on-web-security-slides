@@ -47,7 +47,7 @@ Note:
 ## Be social
 
 * One more thing: use your small group's Slack channel to share your attacks with your peers. They will (honestly!) enjoy clicking a link that does something completely surprising. Appreciating surprises is an important part of the security mindset.
-* Having said that, don't be malicious. It's OK to send people links that do bad things on the Petwriter site, but don't do things that would cause their computers to lock up, or other bad things that are outside the scope of Petwriter.
+* Having said that, don't be malicious. It's OK to send people links that do bad things on the Petwitter site, but don't do things that would cause their computers to lock up, or other bad things that are outside the scope of Petwitter.
 
 
 ---
