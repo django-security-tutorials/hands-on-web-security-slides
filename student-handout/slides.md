@@ -135,7 +135,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 Note:
 - Use your browser's "Inspect element" feature to change the `form action` on a pet profile page.
-- Read the [code](https://github.com/paulproteus/petwriter/blob/master/thesite/communication_app/views.py) for the views, or just try each of the forms on the pet profile page.
+- Read the [code](https://github.com/paulproteus/petwitter/blob/master/thesite/communication_app/views.py) for the views, or just try each of the forms on the pet profile page.
 - Small group Q&A: What was special about this view that meant it had an authorization problem? How might you have written a bug like this?
 
 
@@ -282,8 +282,8 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 Get the app running locally:
 
 ```
-git clone https://github.com/paulproteus/petwriter.git
-cd petwriter
+git clone https://github.com/paulproteus/petwitter.git
+cd petwitter
 virtualenv env
 env/bin/pip install -r requirements.txt
 env/bin/python thesite/manage.py shell
@@ -329,7 +329,7 @@ And extract something you can put into your browser:
 ```
 
 * Now let's transfer that cookie into your browser.
-* Open an _Incognito Window_ or _Private Window_, and visit your group's _petwriter_ instance.
+* Open an _Incognito Window_ or _Private Window_, and visit your group's _petwitter_ instance.
 * In the browser's Javascript console, do: ```document.cookie='sessionid=new:thing'```
 * Now reload the homepage -- are you logged in? As who?
 
