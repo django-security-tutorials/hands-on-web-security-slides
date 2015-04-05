@@ -19,12 +19,10 @@ Navigate these slides by clicking the right & left arrows at the bottom.
 
 ## Social guidelines
 
-To maximize learning:
-
 - **Never** type on someone else's laptop. Type on yours & show them; then, let them type on theirs.
-* When you discover a peer doesn't know something, _don't_ say "Wow, I can't believe you don't know that!" Just let them learn.
-* When correcting someone, make sure it's useful. "Now is better than never, although never is often better than **right now**."
-* If you offer to help someone, _truly engage_. (Don't just shout a fix from across the room)
+* When you discover a peer doesn't know something, _don't_ say "Wow, I can't believe you don't know that!"
+* If you need to correct someone, make sure they're in a frame of mind to make use of your correction.
+* If you offer to help someone, _truly engage_. Be next to them when doing so and answer follow-up questions.
 * Respect people, and their questions, independent of their background, apparent ethnicity, gender, etc.
 
 Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
