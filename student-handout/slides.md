@@ -29,7 +29,7 @@ Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
 
 ---
 
-## How to make the most of these slides
+## Make the most of these slides
 
 * Each slide explains a category of web app vulnerability that you can use to attack the app.
 * If you have a question, check if that slide has **hints**; type '`s`' on your keyboard to see them.
@@ -49,9 +49,9 @@ Note:
 
 ---
 
-## Black box vs. white box testing
+## Black box vs. white box
 
-* In this PyCon tutorial, you have the source code for the app. We call that "white box testing." This simulates you being a security engineer at a company.
+* In this tutorial, you have the source code for the app. We call that "white box testing." This simulates you being a security engineer at a company.
 * "Black box testing", by contrast, assumes you don't have the app's source code.
 * Feel free to constrain yourself by trying not to read the source if you want even more of a challenge.
 * The point of this tutorial, though, is not so much to challenge you to the maximum, but instead to help you become familiar with a variety of security issues. Maximize your learning however works for you.
@@ -61,7 +61,7 @@ Note:
 ## Cross site scripting
 ### Overview
 
-Besides showing `<i>italics</i>` and `<section>sections</section>`, HTML also includes tags that cause browsers take _actions_. If a site doesn't sanitize its inputs, but allows you to enter text that is treated as HTML when the site software renders the page, then you can run or embed whatever JavaScript you wish onto the page.
+Besides showing `<i>italics</i>` and `<section>sections</section>`, HTML also includes tags that cause browsers take _actions_. If a site doesn't sanitize its inputs, but allows you to enter text that is treated as HTML when the site software renders the page, then you can run or embed whatever JavaScript you wish.
 
 When you can run JavaScript on a site that's not what the site owner expected, this is called _cross-site scripting_. You're _scripting_ the site!
 
@@ -94,9 +94,15 @@ Note:
 
 ## Default passwords
 
+### Overview
+
 Many pieces of software are shipped with easy-to-guess default passwords, with the expectation that whoever installs and administers the software will change the password. Many admins forget this step, however.
 
-Your goal:
+---
+
+## Default passwords
+
+## Your goal
 
 * Find the admin site.
 * Ask someone on Slack to tell you the username they used; then, create a new pet on their behalf!
@@ -163,7 +169,7 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 ### Your goal
 
-* Create a web page that, when viewed, creates a new pet owned by whoever visits the page. 
+* Create a web page that, when viewed, creates a new pet owned by whoever visits the page.
 * You may want to ***read the app code*** to find a view function that that accepts GET as well as POST.
 * You can use [JSFiddle](https://jsfiddle.net/buec42cq/) for HTML hosting.
 * Press '`s`' for hints.
@@ -178,7 +184,7 @@ Note:
 
 ## Cross-site request forgery: extra credit (optional)
 
-## Overview
+### Overview
 
 Did you know that `POST` requests can also happen from other sites?
 
@@ -189,7 +195,7 @@ See [this StackOverflow question](http://stackoverflow.com/questions/17940811/ex
 
 ## Cross-site request forgery: extra credit (optional)
 
-## Your task
+### Your task
 
 * Make a web page that, upon visiting it, causes all a user's pet info data to be deleted.
 
@@ -201,7 +207,7 @@ Note:
 
 ---
 
-## Generate session data for other users
+## Generate sessions as others
 
 ### Overview (1/4)
 
@@ -209,7 +215,7 @@ HTTP is a "stateless" protocol, meaning each HTTP request is separate from other
 
 So let's say you log in at `/login/` and visit the home page (`/') of a website. The homepage ought to know that you've logged in, so it can customize the homepage just for you.
 
-Since these requests are separate, there must be some way for the `/login/` page to store some information so that `/` can look at it -- at the very least, it needs to store your user ID.
+Since these requests are separate, there must be some way for the `/login/` page to store some information so that `/` can look at it -- it needs to store at least your user ID.
 
 To achieve this, HTTP grew a feature called "Cookies."
 
@@ -231,7 +237,7 @@ There are two common ways to leverage cookies for this.
 
 ---
 
-## Generate session data for other users
+## Generate sessions as others
 
 ### Overview (3/4)
 
@@ -240,7 +246,7 @@ One is to use a `session ID` cookie, where the contents of the cookie are a rand
 The other common way is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie! This way, the server has to do less work -- it receives the raw session data. No need to look it up in a database from session ID to session _data_.
 
 ---
-## Generate session data for other users
+## Generate sessions as others
 
 ### Overview (4/4)
 
@@ -268,7 +274,7 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 ### Implementation notes (1/4)
 
 * In your browser, open up the console, and type: ```document.cookie```
-* You'll see something like: 
+* You'll see something like:
 ```sessionid="foo:bar"; csrftoken=Iv2HhT3i20ft5zKdWTZ6YdofnHlAqrQQ"```
 * Pull out just the `sessionid` component - in this case ```"foo:bar"``` - we'll use this later.
 
@@ -374,9 +380,9 @@ Note:
 
 ---
 
-## Abuse pickle storage with session data (extra credit)
+## Abuse pickle storage
 
-### Overview
+### Overview (extra credit)
 
 This app uses pickle! Look at the settings file.
 
@@ -388,12 +394,12 @@ Since Django's `signed_cookie` session store uses pickle to serialize the sessio
 
 ---
 
-## Abuse pickle storage with session data (extra credit)
+## Abuse pickle storage
 
-### Your goal
+### Your goal (extra credit)
 
 * Take the work you did before to load custom session data, and
-* instead of providing normal session data, provide normal session data _plus_ make the server execute some code.
+* Instead of providing normal session data, provide normal session data _plus_ make the server execute some code.
 
 This exploit may take you a few hours to develop!
 
@@ -425,4 +431,3 @@ All the following people helped with this tutorial:
 * Drew Fisher
 * Asheesh Laroia
 * Karen Rustad
-

@@ -105,7 +105,7 @@ Note:
 - The next fifteen minutes, we'll do some exploring of other people's websites through a trick called Google Dorking.
 - After that, we'll break into small groups and ask each other what we're trying to protect.
 - Hopefully, by then, you'll be thinking like a security engineer. That's good, because after that, we'll spend two hours breaking into some web applications that we put together for this session.
-- 
+-
 
 ---
 
