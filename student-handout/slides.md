@@ -377,6 +377,30 @@ Note:
 - Submit. Hooray!
 - Think about why this worked. [Hint](http://docs.oracle.com/cd/B14117_01/server.101/b10759/sql_elements006.htm)
 
+---
+
+## Vulnerable dependencies
+
+### Overview
+
+* Like many Python web apps, `petwitter` has a list of other libraries it depends on in `requirements.txt`.
+* Over time, these dependencies get new versions. Sometimes new versions fix bugs; other times, they add bugs.
+
+---
+
+## Vulnerable dependencies
+
+### Your goal
+
+* Look at the dependencies of this app. Figure out which dependency had a recent change that introduced a security issue.
+* **Check your learning**: Send a private message to your small-group lead saying which dependency is vulnerable, and how to exploit it.
+* For hints, type '`s`'.
+
+Note:
+- Dependencies can be pinned to specific versions. The vulnerable dependency in this case is _not_ pinned to a specific version.
+- When the app installs itself, it downloads packages from [PyPI](https://pypi.python.org).
+- You may need to look at `thesite/thesite/urls.py` to figure out how to abuse the vulnerability.
+- Your small-group lead may ask you in what _version_ the security issue was introduced.
 
 ---
 
