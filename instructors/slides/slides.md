@@ -247,7 +247,9 @@ building-block for cross-site request forgery
 
 ---
 
-# MoinMoin
+<img src="http://www.mit.edu/~asheesh/sec-talk/moinmoin.png">
+
+
 
 ---
 
