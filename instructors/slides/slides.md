@@ -249,8 +249,6 @@ building-block for cross-site request forgery
 
 <img src="http://www.mit.edu/~asheesh/sec-talk/moinmoin.png">
 
-
-
 ---
 
 <img src="http://twiki.org/p/pub/Plugins/TWikiDrawPlugin/screenshot.png">
@@ -361,13 +359,132 @@ Small group discussion. Consider:
 
 ## Cross-site scripting
 
+```
+<p>{{ pet.description|safe }}</p>
+```
+
+---
+
+## Cross-site scripting
+
+```
+<p>{{ pet.description|safe }}</p>
+```
+
+vs
+
+```
+<p>{{ pet.description }}</p>
+```
+
+---
+
+## Cross-site scripting
+
+* Theory: Escape content in a context-appropriate way
+---
+
+## Cross-site scripting
+
+* Theory: Escape content in a context-appropriate way
+* Practice: Get good tools & trust 'em.
+    * Template auto-escaping.
+---
+
+## Cross-site scripting
+
 * Theory: Escape content in a context-appropriate way
 * Practice: Get good tools & trust 'em.
     * Template auto-escaping.
 
+```
+<script>
+var x = {{ thing }};
+```
+
+---
+
+## Cross-site scripting
+
+* Theory: Escape content in a context-appropriate way
+* Practice: Get good tools & trust 'em.
+    * Template auto-escaping.
+
+```
+<script>
+var x = {{ thing }};
+```
+
+```
+var x = {{ simplejson.dumps(data, cls=JSONEncoderForHTML) }};
+```
+---
+
+## Cross-site scripting
+
+* Theory: Escape content in a context-appropriate way
+* Practice: Get good tools & trust 'em.
+    * Template auto-escaping.
+
+```
+<script>
+var x = {{ thing }};
+```
+
+```
+var x = {{ simplejson.dumps(data, cls=JSONEncoderForHTML) }};
+```
+
+* Q. Escape data even from the database?
+
 ---
 
 ## Default passwords
+
+---
+
+## Authorization checking
+
+```
+# If the user is not logged in, reject the request.
+if not request.user.is_authenticated():
+    return HttpResponse(status=403)
+
+# If they're trying to update a non-existent pet, reject the
+# request with a 404.
+pet = get_object_or_404(communication_app.models.Pet, pk=pet_id)
+```
+
+---
+
+## Authorization checking
+
+```
+
+
+
+
+# If they're trying to update a non-existent pet, reject the
+# request with a 404.
+pet = get_object_or_404(communication_app.models.Pet,
+                        pk=pet_id)
+```
+
+---
+
+## Authorization checking
+
+```
+
+
+
+
+# If they're trying to update a non-existent pet, or a pet they
+# don't own, reject the request with a 404.
+pet = get_object_or_404(communication_app.models.Pet,
+                        pk=pet_id,
+                        user=request.user)
+```
 
 ---
 
@@ -388,13 +505,14 @@ Small group discussion. Consider:
 
 ## Secure by default
 
-* Keep security simple.
 ---
 
-## Secure by default
+<img src="http://www.mit.edu/~asheesh/sec-talk/csrf_cookie.png">
 
-* Keep security simple.
-* Principle of least authority.
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/csrf_cookie_bad_form.png">
 
 ---
 
@@ -408,7 +526,28 @@ Small group discussion. Consider:
 
 * POST to change data, and
 * Django: `{%  csrf_token %}`
+* Flask-WTForms: `CsrfProtect(app)`
+---
 
+## Session data stealing
+
+```
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '...'
+```
+
+---
+
+### Session data stealing
+
+
+```
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+```
+
+```
+heroku config:set DJANGO_SECRET_KEY=something_actually_random
+```
 ---
 
 ## Session data stealing
@@ -418,28 +557,63 @@ Small group discussion. Consider:
 
 ---
 
-## SQL injection
-
-* Don't use raw SQL.
-* Use an ORM (sqlalchemy, Django ORM).
-* Use "prepared queries".
+<img src="http://www.mit.edu/~asheesh/sec-talk/gaynor-deli-1.png">
 
 ---
 
+<img src="http://www.mit.edu/~asheesh/sec-talk/gaynor-deli-2.png">
+
+---
+
+## SQL injection
+
 ```
-query(
-    "SELECT * from user where ID=%d" % (1,)
-)
+sql_query = '''SELECT * from communication_app_pet WHERE id=%s
+AND user_id=%d''' % (
+        pet_id,
+        request.user.pk,
+    )
+```
+
+---
+
+## SQL injection
+
+```
+sql_query = '''SELECT * from communication_app_pet WHERE id=%s
+AND user_id=%d''' % (
+        pet_id,
+        request.user.pk,
+    )
 ```
 
 vs
 
 ```
-query(
-    "SELECT * from user where ID=?",
-    1
-)
+sql_query = '''SELECT * from communication_app_pet WHERE id=?
+AND user_id=?'''
+
+query.execute(sql_query, pet_id, request.user.pk)
 ```
+
+---
+
+<img width="400" src="http://www.mit.edu/~asheesh/sec-talk/select.png" style="border: none;">
+
+```
+sql_query = '''SELECT * from communication_app_pet WHERE id=?
+AND user_id=?'''
+
+query.execute(sql_query, pet_id, request.user.pk)
+```
+---
+
+## SQL injection
+
+* Don't use raw SQL.
+* Use an ORM (sqlalchemy, Django ORM).
+* Use parameterized queries.
+
 ---
 
 ## Testing
@@ -463,12 +637,56 @@ assert(response.status_code, 404)
 
 ---
 
+<img src="http://www.mit.edu/~asheesh/sec-talk/dependency-diff.png" style="border: none;">
+
+---
+
 ## Vulnerable dependencies
 
 * Libraries run with full privilege.
-* FIXME where did the attack stuff go?
 
 ---
+
+## Vulnerable dependencies
+
+* Libraries run with full privilege.
+
+```
+$ cat requirements.txt
+Django==1.4.20
+dj-database-url==0.3.0
+asheeshs-django-optimizer
+```
+---
+
+## Vulnerable dependencies
+
+* Libraries run with full privilege.
+
+```
+$ cat requirements.txt
+Django==1.4.20
+dj-database-url==0.3.0
+asheeshs-django-optimizer
+```
+
+* Pin your dependencies; get fresh versions, and read the diff.
+
+---
+
+## How to steal cookies
+
+```
+document.cookie
+
+```
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/set-cookie.png" style="border: none;">
+
+---
+
 
 ## Extra attacks
 
