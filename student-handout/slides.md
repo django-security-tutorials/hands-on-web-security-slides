@@ -6,13 +6,13 @@ Navigate these slides by clicking the right & left arrows at the bottom.
 
 ---
 
-## Make the most of lab time
+## Make the most of lab time (#0)
 
 * You have 90 minutes -- get some hands-on practice. Work alone or find a buddy.
 * Make sure you know who your small-group lead is!
 * Visit _petwitter.com_ and click the link to get in your small group's Slack channel and app instance.
 * Attack it, with the help of these slides.
-* Once you've done an attack, send a private message to your small-group leader saying so.
+* **Check your learning**: At the end of each section, send a private message to your small group lead with a link to your work and the number from the slide heading (e.g. #0). Do that now.
 * Some attacks are labeled **extra credit**; if you're new to security, I encourage you to skip those so you can get to all the important attacks.
 
 ---
@@ -69,7 +69,7 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 ---
 
 ## Cross site scripting
-### Your goal
+### Your goal (#1)
 
 * Add some `<i>italics</i>` to different text inputs in the site.
 * Now click around the site. If you can see the text is in _italics_, then make the page run some Javascript. (If you need info about this, see the next slide.)
@@ -103,7 +103,7 @@ Many pieces of software are shipped with easy-to-guess default passwords, with t
 
 ## Default passwords
 
-## Your goal
+## Your goal (#2)
 
 * Find the admin site.
 * Ask someone on Slack to tell you the username they used; then, create a new pet on their behalf!
@@ -130,7 +130,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 ## Improper authorization checking
 
-### Your goal
+### Your goal (#3)
 
 * Ask someone on Slack for a pet ID that isn't yours. Then
 * Modify it somehow.
@@ -168,13 +168,13 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 ## Cross site request forgery
 
-### Your goal
+### Your goal (#4)
 
 * Create a web page that, when viewed, creates a new pet owned by whoever visits the page.
 * You may want to ***read the app code*** to find a view function that accepts GET as well as POST.
 * You can use [JSFiddle](https://jsfiddle.net/buec42cq/) for HTML hosting.
 * Press '`s`' for hints.
-* **Check your learning**: Send a link to your small-group lead.
+* **Check your learning**: Send your JSFiddle link to your small-group lead.
 
 Note:
 - To figure out exactly how to craft the GET URL, start by using _Inspect Element_ to modify the form so that it is `method=GET` on your own computer.
@@ -196,11 +196,11 @@ See [this StackOverflow question](http://stackoverflow.com/questions/17940811/ex
 
 ## Cross-site request forgery: extra credit (optional)
 
-### Your task
+### Your task (#4b)
 
 * Make a web page that, upon visiting it, causes all a user's pet info data to be deleted.
 
-* Share a link in Slack. (This time, it's good to warn people!)
+* **Check your learning**: Share a link in Slack. (This time, it's good to warn people!)
 
 Note:
 - Use JSFiddle again for hosting.
@@ -223,7 +223,7 @@ To achieve this, HTTP grew a feature called "Cookies."
 
 ---
 
-## Generate session data for other users
+## Generate session data as others
 
 ### Overview (2/4)
 
@@ -259,14 +259,14 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 
 ---
 
-## Generate session data for other users
+## Generate sessions as others
 
-### Your task
+### Your task (#5)
 
 * Use Django to parse the cookie data for your session.
 * Ask your small group lead what user ID they are.
 * Log in as them!
-* When you succeed, show them your screen!
+* **Check your learning**: Send a private message to your small-group leader explaining why were you able to generate session data that the server trusted.
 * More details on _how_ on the next slide.
 
 ---
@@ -339,35 +339,27 @@ And extract something you can put into your browser:
 
 ---
 
-## Generate session data for other users
-
-* **Check your learning**: Send a private message to your small-group leader explaining why were you able to generate session data that the server trusted.
-
----
-
 ## SQL Injection
 
 ### Overview
 
 * Many web apps, behind the scenes, access data from a database by sending SQL queries to it.
-* Sample query: `DELETE from users WHERE user_id=3;`
+* e.g.: `DELETE from users WHERE user_id=3;`
 * If `user_id` were controlled by the attacker, the attacker could change the query to be:
-```DELETE FROM users WHERE user_id=user_id;```
-* and you'd lose all your user data.
+```DELETE FROM users WHERE user_id=user_id;``` and you'd lose all your user data.
 * SQL mappers like the Django ORM automatically escape parameters, so this might instead be:
-```DELETE from users WHERE user_id="user_id";```
-* which would delete nothing.
+```DELETE from users WHERE user_id="user_id";```which would delete nothing.
 
 ---
 
 ## SQL Injection
 
-### Your goal
+### Your goal (#6)
 
 * Find a view function that uses raw SQL queries, rather than the Django ORM.
 * (**Read the source** for this!)
 * Use this to modify a _pet you did not create_!
-* When you've done it, send a link to your small-group leader to the pet page you updated. They'll ask you _why_ your attack worked.
+* **Check your learning**: When you've done it, send a link to your small-group leader to the pet page you updated. They'll ask you _why_ your attack worked.
 * Type '`s`' to see hints.
 
 Note:
@@ -391,7 +383,7 @@ Note:
 
 ## Vulnerable dependencies
 
-### Your goal
+### Your goal (#7)
 
 * Look at the dependencies of this app. Figure out which dependency had a recent change that introduced a security issue.
 * **Check your learning**: Send a private message to your small-group lead saying which dependency is vulnerable, and how to exploit it.
