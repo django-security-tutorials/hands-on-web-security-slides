@@ -321,7 +321,7 @@ Load the data as follows:
 Now, modify the data:
 
 ```
->>> session_data['_auth_user_id'] = 1
+>>> session_data['_auth_user_id'] = THE_USER_ID_YOU_WANT_TO_BECOME
 >>> session_data.save()
 ```
 
