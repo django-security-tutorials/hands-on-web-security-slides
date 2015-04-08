@@ -139,7 +139,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 Note:
 - Use your browser's "Inspect element" feature to change the `form action` on a pet profile page.
-- Read the [code](https://github.com/paulproteus/petwitter/blob/master/thesite/communication_app/views.py) for the views, or just try each of the forms on the pet profile page.
+- Read the [code](https://github.com/petwitter/petwitter/blob/master/thesite/communication_app/views.py) for the views, or just try each of the forms on the pet profile page.
 - Small group Q&A: What was special about this view that meant it had an authorization problem? How might you have written a bug like this?
 
 
@@ -286,7 +286,7 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 Get the app running locally:
 
 ```
-git clone https://github.com/paulproteus/petwitter.git
+git clone https://github.com/petwitter/petwitter.git
 cd petwitter
 virtualenv env
 env/bin/pip install -r requirements.txt
