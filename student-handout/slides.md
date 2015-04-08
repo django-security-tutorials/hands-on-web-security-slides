@@ -418,12 +418,25 @@ Since Django's `signed_cookie` session store uses pickle to serialize the sessio
 * Take the work you did before to load custom session data, and
 * Instead of providing normal session data, provide normal session data _plus_ make the server execute some code.
 
-This exploit may take you a few hours to develop!
+Implementation hints on the next slide.
+
 
 References:
 
 * http://www.balda.ch/posts/2013/Jun/23/python-web-frameworks-pickle/
 * https://github.com/django/django/blob/master/django/contrib/sessions/backends/signed_cookies.py
+
+---
+
+## Abuse pickle storage
+
+### Implementation hints
+
+* On your computer, create a Python object that does `os.system('echo zomg')` in the `__reduce__` method
+* Pickle that thing on your own system.
+* Use `pickle.loads()` on your own system to verify that when you load the data, it executes the `echo zomg` shell command.
+* Now, turn the session data from earlier into a `UserDict` subclass with a custom `__reduce__` method.
+* Now that _should_ cause remote code execution on the server.
 
 
 ---
