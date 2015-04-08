@@ -234,17 +234,17 @@ Here's how cookies typically work:
 
 The `/` page needs the _user ID_ in order to customize itself. It might need other data, too; typically, it represents the "session data" as a Python dict, e.g.: ```{'user_id' 3}```
 
-There are two common ways to leverage cookies for this.
-
 ---
 
 ## Generate sessions as others
 
 ### Overview (3/4)
 
-One is to use a `session ID` cookie, where the contents of the cookie are a random number. Then when the server processes a request, it checks what _session data_ is associated with the session ID, loads that into memory, and hands it to the view function.
+There are two common ways to use cookies to store session data.
 
-The other common way is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie! This way, the server has to do less work -- it receives the raw session data. No need to look it up in a database from session ID to session _data_.
+One is to use a `session ID` cookie; the cookie contains a random number. When server processes a request, it checks what _session data_ is associated with the session ID, loads that into memory, and hands it to the view function.
+
+Another is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie! This way, the server receives the raw session data. No need to look it up in a database from session ID to session _data_.
 
 ---
 ## Generate sessions as others
