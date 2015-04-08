@@ -436,6 +436,31 @@ References:
 
 ---
 
+## Fix the issues
+
+### Your goal (extra credit)
+
+* If you're done early, we recommend you try to _fix_ some of the security issues in the app.
+* To do that, first _fork_ [the project](https://github.com/petwitter/petwitter) on GitHub, then _clone_ the forked version to your computer.
+* To set up a local dev environment, see next slide.
+
+---
+
+## Fix the issues
+
+### Development environment (extra credit)
+
+```
+git clone YOUR_FORK_URL_HERE
+cd petwitter
+virtualenv env
+env/bin/pip install -r requirements.txt
+env/bin/python thesite/manage.py syncdb
+env/bin/python thesite/manage.py runserver
+```
+
+---
+
 ## Notes for instructors only
 
 - Skip this slide if you're an attendee!
