@@ -11,8 +11,6 @@ right / left arrows on your keyboard.
 
 * You have 90 minutes to get some hands-on practice. Work alone or find a buddy.
 
-* Make sure you know who your team lead is.
-
 * Visit [pettwitter.com](https://pettwitter.com) and click the link to get in your small group's Zulip stream and app instance.
 
 * Attack it, with the help of these slides.
@@ -116,7 +114,8 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 * Now click around the site. If you can see the text is _emphasized_, then make the page run some Javascript. (If you 
 need info about this, see the next slide.)
 * You can stop when you've found one. (For extra credit, find more than one.)
-* **Check your learning**: Once you've done that, open a private message conversation in Slack with your small-group lead, and send them your attack link!
+* **Check your learning**: Once you've done that, open a private message conversation in Zulip with Jacinda / Willy 
+ or someone on your team who's already solved this and send them your attack link!
 
 ---
 
@@ -147,14 +146,15 @@ Many pieces of software are shipped with easy-to-guess default passwords, with t
 
 * Find the admin site.
 * Ask someone on Zulip to tell you the username they used; then, create a new pet on their behalf!
-* **Check your learning**: Send a message to your small-group lead with a link to the pet you created!
+* **Check your learning**: Send a message to Jacinda / Willy or another team member with a link to the pet you created!
 
 For more hints, press '`s`'
 
 Note:
 - Take a look through the **urls.py** in the code if you can't find the admin site.
 - The username is admin. Take a wild guess at the password. (-;
-- Small group Q&A: Can you think of other things in your life that might have default passwords? Feel free to have a longer conversation with your group lead about default passwords if you have more questions!
+- Small group Q&A: Can you think of other things in your life that might have default passwords? Feel free to have a
+ longer conversation with your group about default passwords if you have more questions!
 
 ---
 
@@ -214,7 +214,7 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 * You may want to ***read the app code*** to find a view function that accepts GET as well as POST.
 * You can use [JSFiddle](https://jsfiddle.net/buec42cq/) for HTML hosting.
 * Press '`s`' for hints.
-* **Check your learning**: Send your JSFiddle link to your small-group lead.
+* **Check your learning**: Send your JSFiddle link to your instructors or team members.
 
 Note:
 - To figure out exactly how to craft the GET URL, start by using _Inspect Element_ to modify the form so that it is `method=GET` on your own computer.
@@ -304,9 +304,10 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 ### Your task (#5)
 
 * Use Django to parse the cookie data for your session.
-* Ask your small group lead what user ID they are.
+* Ask another team member what user ID they have.
 * Log in as them!
-* **Check your learning**: Send a private message to your small-group leader explaining why were you able to generate session data that the server trusted.
+* **Check your learning**: Send a private message to Jacinda, Willy, or a team member who's already finished explaining 
+why were you able to generate session data that the server trusted.
 * More details on _how_ on the next slide.
 
 ---
@@ -399,7 +400,9 @@ And extract something you can put into your browser:
 * Find a view function that uses raw SQL queries, rather than the Django ORM.
 * (**Read the source** for this!)
 * Use this to modify a _pet you did not create_!
-* **Check your learning**: When you've done it, send a link to your small-group leader to the pet page you updated. They'll ask you _why_ your attack worked.
+* **Check your learning**: When you've done it, send a link to the pet page you updated to Willy / Jacinda or a team 
+member. They'll ask you _why_ your attack worked.
+
 * Type '`s`' to see hints.
 
 Note:
@@ -426,14 +429,16 @@ Note:
 ### Your goal (#7)
 
 * Look at the dependencies of this app. Figure out which dependency had a recent change that introduced a security issue.
-* **Check your learning**: Send a private message to your small-group lead saying which dependency is vulnerable, and how to exploit it.
+* **Check your learning**: Send a private message to Willy / Jacinda or a team member who's completed this saying which 
+dependency is vulnerable, and how to exploit it.
+
 * For hints, type '`s`'.
 
 Note:
 - Dependencies can be pinned to specific versions. The vulnerable dependency in this case is _not_ pinned to a specific version.
 - When the app installs itself, it downloads packages from [PyPI](https://pypi.python.org).
 - You may need to look at `thesite/thesite/urls.py` to figure out how to abuse the vulnerability.
-- Your small-group lead may ask you in what _version_ the security issue was introduced.
+- In which _version_ was the security vulnerability introduced?
 
 ---
 
