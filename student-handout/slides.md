@@ -10,16 +10,24 @@ right / left arrows on your keyboard.
 ## Make the most of lab time (#0)
 
 * You have 90 minutes to get some hands-on practice. Work alone or find a buddy.
-* Make sure you know who your small-group lead is!
-* Visit [pettwitter.com](https://pettwitter.com) and click the link to get in your 
-small group's Zulip stream and app instance.
+
+* Make sure you know who your team lead is.
+
+* Visit [pettwitter.com](https://pettwitter.com) and click the link to get in your small group's Zulip stream and app instance.
+
 * Attack it, with the help of these slides.
-* **Check your learning**: If you are the first person to finish an attack, send a PM to Jacinda and Willy with a link 
-  to your work and the number from the slide heading. Once confirmed, announce in your team stream that you've 
-  successfully exploited this vulnerability. Other people in your group should now turn to you for verification 
-  of vulnerability completion! 
+
 * Some attacks are labeled **extra credit**; if you're new to security, I encourage you to skip those so you can get to all the important attacks.
 
+---
+
+## Check your learning
+
+* If you are the first person to finish an attack, send a PM to Jacinda and Willy with a link 
+  to your work and the number from the slide heading. Once confirmed, announce in your team stream that you've 
+  successfully exploited this vulnerability. 
+* Other people in your group should now turn to you for verification of vulnerability completion! 
+  
 ---
 
 ## Social guidelines
@@ -36,7 +44,10 @@ Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
 
 ## Admit if you don't know something. Help if you do.
 
-https://xkcd.com/1053/
+
+[XKCD 1053 - Ten Thousand](https://xkcd.com/1053/)
+
+![XKCD 1053](https://imgs.xkcd.com/comics/ten_thousand.png)
 
 ---
 
@@ -45,7 +56,7 @@ https://xkcd.com/1053/
 * Each slide explains a category of web app vulnerability that you can use to attack the app.
 * If you have a question, check if that slide has **hints**!
 * Type '`s`' on your keyboard to see the _special hints_.
-* Look at the **blue bar** at the bottom. It shows your progress through these slides.
+* Look at the **progress bar** at the bottom to see how far along you are in the slides.
 
 Note:
 - Hooray! You opened the special hints successfully.
@@ -54,8 +65,10 @@ Note:
 
 ## Be social
 
-* One more thing: use your small group's Slack channel to share your attacks with your peers. They will (honestly!) enjoy clicking a link that does something completely surprising.
-* Having said that, don't be malicious. It's OK to send people links that do bad things on the Petwitter site, but don't do things that would cause their computers to lock up, or other bad things that are outside the scope of Petwitter.
+* One more thing: use your small group's Zulip stream and topics to share your attacks with your peers. They will enjoy
+ clicking a link that does something completely surprising.
+* Having said that, don't be malicious. It's OK to send people links that do bad things on the Pettwitter site, but 
+don't do things that would cause their computers to lock up, or other bad things that are outside the scope of Pettwitter.
 * Appreciating surprises is an important part of the security mindset.
 
 
@@ -63,10 +76,12 @@ Note:
 
 ## Black box vs. white box
 
-* In this tutorial, you have the source code for the app. We call that "white box testing." This simulates you being a security engineer at a company.
-* "Black box testing", by contrast, assumes you don't have the app's source code.
+* In this tutorial, you have the source code for the app. We call this "white box testing." This simulates working as a
+ security engineer at a company.
+* "Black box testing," by contrast, assumes you don't have the app's source code.
 * Feel free to constrain yourself by trying not to read the source if you want even more of a challenge.
-* The point of this tutorial, though, is not so much to challenge you to the maximum, but instead to help you become familiar with a variety of security issues. Maximize your learning however works for you.
+* The point of this tutorial, though, is not so much to challenge you to the maximum, but instead to help you become
+ familiar with a variety of security issues. Maximize your learning however works for you.
 
 ---
 
@@ -150,7 +165,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 Note:
 - Use your browser's "Inspect element" feature to change the `form action` on a pet profile page.
-- Read the [code](https://github.com/petwitter/petwitter/blob/master/thesite/communication_app/views.py) for the views, or just try each of the forms on the pet profile page.
+- Read the [code](https://github.com/petwitter/pettwitter/blob/master/thesite/communication_app/views.py) for the views, or just try each of the forms on the pet profile page.
 - Small group Q&A: What was special about this view that meant it had an authorization problem? How might you have written a bug like this?
 
 
@@ -297,8 +312,8 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 Get the app running locally:
 
 ```
-git clone https://github.com/petwitter/petwitter.git
-cd petwitter
+git clone https://github.com/petwitter/pettwitter.git
+cd pettwitter
 virtualenv env
 env/bin/pip install -r requirements.txt
 env/bin/python thesite/manage.py shell
@@ -344,7 +359,7 @@ And extract something you can put into your browser:
 ```
 
 * Now let's transfer that cookie into your browser.
-* Open an _Incognito Window_ or _Private Window_, and visit your group's _petwitter_ instance.
+* Open an _Incognito Window_ or _Private Window_, and visit your group's _pettwitter_ instance.
 * In the browser's Javascript console, do: ```document.cookie='sessionid=new:thing'```
 * Now reload the homepage -- are you logged in? As who?
 
@@ -387,7 +402,7 @@ Note:
 
 ### Overview
 
-* Like many Python web apps, `petwitter` has a list of other libraries it depends on in `requirements.txt`.
+* Like many Python web apps, `pettwitter` has a list of other libraries it depends on in `requirements.txt`.
 * Over time, these dependencies get new versions. Sometimes new versions fix bugs; other times, they add bugs.
 
 ---
@@ -457,7 +472,7 @@ References:
 ### Your goal (extra credit)
 
 * If you're done early, we recommend you try to _fix_ some of the security issues in the app.
-* To do that, first _fork_ [the project](https://github.com/petwitter/petwitter) on GitHub, then _clone_ the forked version to your computer.
+* To do that, first _fork_ [the project](https://github.com/petwitter/pettwitter) on GitHub, then _clone_ the forked version to your computer.
 * To set up a local dev environment, see next slide.
 
 ---
@@ -468,7 +483,7 @@ References:
 
 ```
 git clone YOUR_FORK_URL_HERE
-cd petwitter
+cd pettwitter
 virtualenv env
 env/bin/pip install -r requirements.txt
 env/bin/python thesite/manage.py syncdb
