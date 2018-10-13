@@ -113,7 +113,8 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 ### Your goal (#1)
 
 * Add some `<em>emphasized text</em>` to different text inputs in the site.
-* Now click around the site. If you can see the text is in _italics_, then make the page run some Javascript. (If you need info about this, see the next slide.)
+* Now click around the site. If you can see the text is _emphasized_, then make the page run some Javascript. (If you 
+need info about this, see the next slide.)
 * You can stop when you've found one. (For extra credit, find more than one.)
 * **Check your learning**: Once you've done that, open a private message conversation in Slack with your small-group lead, and send them your attack link!
 
@@ -122,20 +123,19 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 ## Cross-site scripting
 ### Sample attack code
 
-- Sample JS: ```< script >alert(1);</ script>```
+- Sample JS: ```< script>alert(1);< /script>```
 - Feel free to Google [xss cheat sheet] for more.
 - Type '`s`' for more suggestions on attack code.
 
 Note:
-- Other fun things: ```<img src=x onerror="alert(1);">```
+- Other fun things: `< img src=x onerror="alert(1);">`
 - (This works because `x` happens not to exist, so the IMG tag runs the `onerror` code.)
-- TODO someone could write an epic site-specific weaponized XSS thing.
+- TODO: Someone could write an epic site-specific weaponized script. 
 - Small-group Q&A: Why can you cause JS execution in this one place, but not in all places? What sort of damage could the JavaScript have done?
 
 ---
 
 ## Default passwords
-
 ### Overview
 
 Many pieces of software are shipped with easy-to-guess default passwords, with the expectation that whoever installs and administers the software will change the password. Many admins forget this step, however.
@@ -143,7 +143,6 @@ Many pieces of software are shipped with easy-to-guess default passwords, with t
 ---
 
 ## Default passwords
-
 ## Your goal (#2)
 
 * Find the admin site.
