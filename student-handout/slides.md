@@ -21,7 +21,7 @@ right / left arrows on your keyboard.
 
 ## Check your learning
 
-* If you are the first person to finish an attack, send a PM to Jacinda and Willy with a link 
+* If you are the first person to finish an attack, send a PM to Jacinda and WIlliam with a link 
   to your work and the number from the slide heading. Once confirmed, announce in your team stream that you've 
   successfully exploited this vulnerability. 
 * Other people in your group should now turn to you for verification of vulnerability completion! 
@@ -114,7 +114,7 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 * Now click around the site. If you can see the text is _emphasized_, then make the page run some Javascript. (If you 
 need info about this, see the next slide.)
 * You can stop when you've found one. (For extra credit, find more than one.)
-* **Check your learning**: Once you've done that, open a private message conversation in Zulip with Jacinda / Willy 
+* **Check your learning**: Once you've done that, open a private message conversation in Zulip with Jacinda / WIlliam 
  or someone on your team who's already solved this and send them your attack link!
 
 ---
@@ -146,7 +146,7 @@ Many pieces of software are shipped with easy-to-guess default passwords, with t
 
 * Find the admin site.
 * Ask someone on Zulip to tell you the username they used; then, create a new pet on their behalf!
-* **Check your learning**: Send a message to Jacinda / Willy or another team member with a link to the pet you created!
+* **Check your learning**: Send a message to Jacinda / WIlliam or another team member with a link to the pet you created!
 
 For more hints, press '`s`'
 
@@ -177,7 +177,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 * For more hints, press '`s`'
 
-* **Check your learning**: Send a private message to Jacinda / Willy or a team member who's finished this step, saying 
+* **Check your learning**: Send a private message to Jacinda / WIlliam or a team member who's finished this step, saying 
 which function has the bug.
 
 Note:
@@ -203,10 +203,11 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 ### Overview (2/2)
 
-* If _victim.com_ has CSRF problem, then Alice can make a page on _evil.com_ that, through Bob merely visiting her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
+* If _victim.com_ has a CSRF vulnerability, then Alice can make a page on _evil.com_ that, through Bob merely visiting 
+  her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
 * The way cookies work is that they flow with every request Bob makes to _victim.com_.
 * An IMG tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_.
-* So in this way, Alice causes Bob to silently take actions on another site.
+* So in this way, Alice causes Bob to silently take actions on another site (i.e. "cross site").
 
 ---
 
@@ -310,7 +311,7 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 * Use Django to parse the cookie data for your session.
 * Ask another team member what user ID they have.
 * Log in as them!
-* **Check your learning**: Send a private message to Jacinda, Willy, or a team member who's already finished explaining 
+* **Check your learning**: Send a private message to Jacinda, WIlliam, or a team member who's already finished explaining 
 why were you able to generate session data that the server trusted.
 * More details on _how_ on the next slide.
 
@@ -404,7 +405,7 @@ And extract something you can put into your browser:
 * Find a view function that uses raw SQL queries, rather than the Django ORM.
 * (**Read the source** for this!)
 * Use this to modify a _pet you did not create_!
-* **Check your learning**: When you've done it, send a link to the pet page you updated to Willy / Jacinda or a team 
+* **Check your learning**: When you've done it, send a link to the pet page you updated to WIlliam / Jacinda or a team 
 member. They'll ask you _why_ your attack worked.
 
 * Type '`s`' to see hints.
@@ -433,7 +434,7 @@ Note:
 ### Your goal (#7)
 
 * Look at the dependencies of this app. Figure out which dependency had a recent change that introduced a security issue.
-* **Check your learning**: Send a private message to Willy / Jacinda or a team member who's completed this saying which 
+* **Check your learning**: Send a private message to WIlliam / Jacinda or a team member who's completed this saying which 
 dependency is vulnerable, and how to exploit it.
 
 * For hints, type '`s`'.
