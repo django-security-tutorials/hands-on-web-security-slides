@@ -86,18 +86,33 @@ don't do things that would cause their computers to lock up, or other bad things
 ---
 
 ## Cross site scripting
-### Overview
+### Overview (1/2)
 
-Besides showing `<i>italics</i>` and `<section>sections</section>`, HTML also includes tags that cause browsers take _actions_. If a site doesn't sanitize its inputs, but allows you to enter text that is treated as HTML when the site software renders the page, then you can run or embed whatever JavaScript you wish.
+Besides showing 
 
-When you can run JavaScript on a site that's not what the site owner expected, this is called _cross-site scripting_. You're _scripting_ the site!
+`<em>emphasized text</em>` 
+
+and 
+
+`<section>sections</section>`, HTML also includes tags that cause 
+browsers take _actions_. If a site doesn't sanitize its inputs, but allows you to enter text that is treated as HTML 
+when the site software renders the page, then you can run or embed whatever JavaScript you wish.
+
+
+---
+
+## Cross site scripting
+### Overview (2/2)
+
+When you can run JavaScript on a site that's not what the site owner expected, this is called _cross-site scripting_ 
+(XSS).
 
 ---
 
 ## Cross site scripting
 ### Your goal (#1)
 
-* Add some `<i>italics</i>` to different text inputs in the site.
+* Add some `<em>emphasized text</em>` to different text inputs in the site.
 * Now click around the site. If you can see the text is in _italics_, then make the page run some Javascript. (If you need info about this, see the next slide.)
 * You can stop when you've found one. (For extra credit, find more than one.)
 * **Check your learning**: Once you've done that, open a private message conversation in Slack with your small-group lead, and send them your attack link!
@@ -132,7 +147,7 @@ Many pieces of software are shipped with easy-to-guess default passwords, with t
 ## Your goal (#2)
 
 * Find the admin site.
-* Ask someone on Slack to tell you the username they used; then, create a new pet on their behalf!
+* Ask someone on Zulip to tell you the username they used; then, create a new pet on their behalf!
 * **Check your learning**: Send a message to your small-group lead with a link to the pet you created!
 
 For more hints, press '`s`'
@@ -158,7 +173,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 ### Your goal (#3)
 
-* Ask someone on Slack for a pet ID that isn't yours. Then
+* Ask someone on Zulip for a pet ID that isn't yours. Then
 * Modify it somehow.
 * For more hints, press '`s`'
 * **Check your learning**: Send a private message to your instructor, saying which function has the bug.
@@ -226,7 +241,7 @@ See [this StackOverflow question](http://stackoverflow.com/questions/17940811/ex
 
 * Make a web page that, upon visiting it, causes all a user's pet info data to be deleted.
 
-* **Check your learning**: Share a link in Slack. (This time, it's good to warn people!)
+* **Check your learning**: Share a link in Zulip. (This time, it's good to warn people!)
 
 Note:
 - Use JSFiddle again for hosting.
