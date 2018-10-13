@@ -206,7 +206,8 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 * If _victim.com_ has a CSRF vulnerability, then Alice can make a page on _evil.com_ that, through Bob merely visiting 
   her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
 * The way cookies work is that they flow with every request Bob makes to _victim.com_.
-* An IMG tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_.
+* An IMG tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_, or access data Bob's 
+data on _victim.com_ because Bob is logged in.
 * So in this way, Alice causes Bob to silently take actions on another site (i.e. "cross site").
 
 ---
@@ -217,8 +218,10 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 * Create a web page that, when viewed, creates a new pet owned by whoever visits the page.
 * You may want to ***read the app code*** to find a view function that accepts GET as well as POST.
-* You can use [JSFiddle](https://jsfiddle.net/buec42cq/) for HTML hosting.
+* You can use [JSFiddle](https://jsfiddle.net/kta1uL3o/2/) for HTML hosting.
+
 * Press '`s`' for hints.
+
 * **Check your learning**: Send your JSFiddle link to your instructors or team members.
 
 Note:
