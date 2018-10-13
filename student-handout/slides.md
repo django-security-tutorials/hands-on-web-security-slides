@@ -152,7 +152,7 @@ For more hints, press '`s`'
 
 Note:
 - Take a look through the **urls.py** in the code if you can't find the admin site.
-- The username is admin. Take a wild guess at the password. (-;
+- The username is admin. Take a wild guess at the password.
 - Small group Q&A: Can you think of other things in your life that might have default passwords? Feel free to have a
  longer conversation with your group about default passwords if you have more questions!
 
@@ -172,14 +172,18 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 ### Your goal (#3)
 
-* Ask someone on Zulip for a pet ID that isn't yours. Then
-* Modify it somehow.
+* Ask someone on Zulip for a pet ID that isn't yours.
+* Find a way to modify that pet.
+
 * For more hints, press '`s`'
-* **Check your learning**: Send a private message to your instructor, saying which function has the bug.
+
+* **Check your learning**: Send a private message to Jacinda / Willy or a team member who's finished this step, saying 
+which function has the bug.
 
 Note:
 - Use your browser's "Inspect element" feature to change the `form action` on a pet profile page.
-- Read the [code](https://github.com/petwitter/pettwitter/blob/master/thesite/communication_app/views.py) for the views, or just try each of the forms on the pet profile page.
+- Read the [code](https://github.com/django-security-tutorials/pettwitter/blob/master/thesite/communication_app/views.py) for the views,
+ or just try each of the forms on the pet profile page.
 - Small group Q&A: What was special about this view that meant it had an authorization problem? How might you have written a bug like this?
 
 
