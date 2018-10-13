@@ -1,31 +1,42 @@
 # Student handout
 
-### Getting comfortable with web security, PyCon 2015
+### Web Application Security with Django, DjangoCon 2018
 
-Navigate these slides by clicking the right & left arrows at the bottom.
+Navigate these slides by clicking the arrows at the bottom or use the 
+right / left arrows on your keyboard.
 
 ---
 
 ## Make the most of lab time (#0)
 
-* You have 90 minutes -- get some hands-on practice. Work alone or find a buddy.
+* You have 90 minutes to get some hands-on practice. Work alone or find a buddy.
 * Make sure you know who your small-group lead is!
-* Visit _petwitter.com_ and click the link to get in your small group's Slack channel and app instance.
+* Visit [pettwitter.com](https://pettwitter.com) and click the link to get in your 
+small group's Zulip stream and app instance.
 * Attack it, with the help of these slides.
-* **Check your learning**: At the end of each section, send a private message to your small group lead with a link to your work and the number from the slide heading (e.g. #0). Do that now.
+* **Check your learning**: If you are the first person to finish an attack, send a PM to Jacinda and Willy with a link 
+  to your work and the number from the slide heading. Once confirmed, announce in your team stream that you've 
+  successfully exploited this vulnerability. Other people in your group should now turn to you for verification 
+  of vulnerability completion! 
 * Some attacks are labeled **extra credit**; if you're new to security, I encourage you to skip those so you can get to all the important attacks.
 
 ---
 
 ## Social guidelines
 
-- **Never** type on someone else's laptop. Type on yours & show them; then, let them type on theirs.
+* Never type on someone else's laptop. Type on yours & show them; then, let them type on theirs.
 * When you discover a peer doesn't know something, _don't_ say "Wow, I can't believe you don't know that!"
 * If you need to correct someone, make sure they're in a frame of mind to make use of your correction.
 * If you offer to help someone, _truly engage_. Be next to them when doing so and answer follow-up questions.
 * Respect people, and their questions, independent of their background, apparent ethnicity, gender, etc.
 
 Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
+
+---
+
+## Admit if you don't know something. Help if you do.
+
+https://xkcd.com/1053/
 
 ---
 
