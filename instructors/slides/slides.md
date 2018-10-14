@@ -740,6 +740,18 @@ Note:
 
 # Other Questions
 
+Note:
+
+- Before we walk through some of the code, I'd like to know if people had specific questions.
+
+---
+
+# Code Tour
+
+---
+
+# https://github.com/django-security-tutorials/
+
 ---
 
 ## Thanks
