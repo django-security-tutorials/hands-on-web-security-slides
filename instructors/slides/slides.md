@@ -10,11 +10,24 @@
 ## The history of this tutorial
 
 
-* PyCon 2015
+* PyCon 2015 - Getting Comfy with Web Security
 
 * A random email
 
 * A chance meetup earlier this year
+
+* A tutorial proposal
+
+* Many, many updates
+
+Note:
+
+- I was giving a Django admin tutorial at PyCon 2015 and Asheesh emailed me asking if I would be interested in TA-ing
+ for his tutorial (which was the next day).  I didn't have anything else going on and thought it would be cool, so 
+ said sure!
+- Met him earlier this year, talked about how I loved the tutorial but it was out-of-date
+- He suggested I update it, I proposed that; proposal accepted
+- Upgrading from Django 1.4 to 2.1 took a lot; two of the vulnerabilities are a lot trickier to make happen!
 
 ---
 
@@ -74,7 +87,8 @@ Note:
 - Finally, we'll wrap-up with a walkthrough of what we learned and some key takeaways.
 
 ---
-# About you
+
+# Getting to know you
 
 Note:
 
@@ -82,8 +96,10 @@ Note:
 - Of those, that answered the pre-tutorial quiz, here were some common themes:
     - Things to try against a website
     - Security in production
+    - Best practices
 - Can I get three people to volunteer to talk about why you picked this tutorial to attend?
 - With that, we'll begin talking about these attacks.
+- Any questions before we dive in?
 
 ---
 ## A hacked talk
@@ -91,27 +107,12 @@ Note:
 ### Asheesh Laroia & Karen Rustad
 
 Note:
-- So last year at PyCon, a friend and I gave a talk about how to turn a computer into a home server.
-- We talked about TCP ports...
-- ...and interfaces...
-- ...and port forwarding, so you can run a server on your home machine but see it on the Internet.
-- So at some point during the talk, I had the wise idea of mapping an app from my laptop to the broader Internet for people to play with.
+- Asheesh was talking at PyCon 2014 about setting up a server and used Nate Aune's version of the Django polls tutorial
 - I found Nate Aune's version of the Django polls tutorial, and loaded it up.
 - At this point, I said, people should start voting! Which is better -- Chewbacca or Caffeine?
 - But then I noticed there was a new entry in the list, labeled lol.
 - (20:32 is when I got pwned, for screencap purposes.)
 - Here's what happened
-
----
-## http://pycon.ngrok.com/
-
-Note:
-
-This was the URL to the site... and within just the 30 seconds of how long it had been up there, my poll had new values.
-
-That was weird because it wasn't like the poll had a "Add new option" element in the UI.
-
-So I'm standing there at the lectern, wondering what happened, and then I quickly realize.
 
 ---
 
@@ -121,7 +122,8 @@ Note:
 
 The Django admin site was enabled, and whatever default users and passwords Nate had used, that's what I was using, too.
 
-So then it was crystal clear. My "friend" Luke Faraone must have decided to go to the admin site and change the poll to increase the lulz factor of the talk.
+So then it was crystal clear. My "friend" must have decided to go to the admin site and change the poll to
+ increase the lulz factor of the talk.
 
 ---
 
@@ -145,14 +147,15 @@ So then it was crystal clear. My "friend" Luke Faraone must have decided to go t
 <img src="http://www.mit.edu/~asheesh/sec-talk/github-polls-app-password.png">
 
 Note:
-* Default passwords
-* Components with known vulnerabilities
-- As we go through the other examples in this lulz section, you'll see different security issues that affected different 
-sites. To help you keep track of them, Jacky and Nicole and I made a notes page (which we'll give to you at the end of the first hour) which reminds you of the specific attacks that each worked against each example.
-- So feel free to focus on being entertained, as we go through the rest of these examples, but remember that there is a test at the end -- you're going to actually have to use these attacks against some sample sites.
 
----
-
+* Default passwords / urls
+* Components with known vulnerabilities (older versions, plugins)
+- As we go through the other examples in this section, you'll see different security issues that affected different 
+sites. 
+- As we go through the rest of these examples, remember that there is a test at the end -- you're going to 
+actually have to use these attacks against some sample sites.
+- Most of these are unchanged from Asheesh's tutorial in 2015. The bulk of my work was in updating the actual 
+interactive app. The graphics / design may look dated, but the attacks are still relevant.
 
 ---
 
@@ -162,17 +165,24 @@ sites. To help you keep track of them, Jacky and Nicole and I made a notes page 
 
 Note:
 
-- So, last June.
+- Custom view of Twitter
 
-`---
+---
 
 <img src="http://i.guim.co.uk/static/w-700/h--/q-95/sys-images/Guardian/Pix/pictures/2014/6/12/1402572144093/a46e0094-c865-47ea-b987-26bb9f3afaa9-620x372.png">
+
+Note:
+
+- This was the raw tweet
 
 ---
 
 <img src="http://i.guim.co.uk/static/w-700/h--/q-95/sys-images/Guardian/Pix/pictures/2014/6/12/1402572144093/a46e0094-c865-47ea-b987-26bb9f3afaa9-620x372.png">
 
 Ob das wohl funktioniert: <strong>Test</strong> <img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;">
+
+Note:
+- And this was how Tweetdeck rendered it
 
 ---
 
@@ -241,6 +251,10 @@ alert('XSS in Tweetdeck');
 
 &lt;/script><img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;">
 
+Note:
+- Uses jQuery to find the retweet button and click it and to favorite the tweet (go to the parents and find the first
+ child)
+
 ---
 
 <img src="http://zdnet1.cbsistatic.com/hub/i/r/2014/10/02/b1ac71c2-49e6-11e4-b6a0-d4ae52e95e57/resize/770x578/66b184f0ae55a656be043dd2e4e8361a/tweetdeck-hacked.png">
@@ -249,6 +263,7 @@ alert('XSS in Tweetdeck');
 Note:
 - Cross site scripting
 - Ask attendees what _further_ damage the JS could have done.
+- Delete all a user's tweet
 
 ---
 
