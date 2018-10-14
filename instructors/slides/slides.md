@@ -267,19 +267,26 @@ Note:
 
 ---
 
-# The dangers of GET
-
----
-
-<img src="http://vivadl.com/wp-content/uploads/2011/01/2008528850143052.jpg">
+# Why allowing GET to alter state can get you in trouble
 
 ---
 
 <img src="http://www.indirvip.com/wp-content/uploads/2013/08/Google-Web-Accelerator-Resimleri2.png">
 
+Note:
+
+- Talk about what Google accelerator was
+- Clicked on all the links in your search results ahead of time
+
 ---
 
 <img src="https://signalvnoise.com/images/newbp-users.png">
+
+Note:
+
+- Popular web-based project management app called Basecamp
+- Side note: they created RoR, so building on their work
+- What do you think that trash can does when you click on it?
 
 ---
 
@@ -293,7 +300,7 @@ GET /user/1/delete
 
 <img src="https://signalvnoise.com/images/newbp-users.png">
 
-building-block for cross-site request forgery
+Opening for cross-site request forgery
 
 ---
 
@@ -355,22 +362,23 @@ GET /?action=moinexec&c=rm%20-rf%20/
 ## Summary
 
 * Security misconfiguration (default password)
-* Cross-site request forgery (GET to delete)
----
-
-## Summary
-
-* Security misconfiguration (default password)
-* Cross-site request forgery (GET to delete)
 * Cross-site scripting (TweetDeck)
 ---
 
 ## Summary
 
 * Security misconfiguration (default password)
-* Cross-site request forgery (GET to delete)
 * Cross-site scripting (TweetDeck)
+* Cross-site request forgery (GET to delete)
+---
+
+## Summary
+
+* Security misconfiguration (default password)
+* Cross-site scripting (TweetDeck)
+* Cross-site request forgery (GET to delete)
 * Code injection (MoinMoin bug)
+
 ---
 
 ## What's next
@@ -381,15 +389,14 @@ GET /?action=moinexec&c=rm%20-rf%20/
 
 ---
 
-## What are Google Dorks?
+## (Aside) What are Google Dorks?
 
 > Google hacking, also named Google dorking, is a computer hacking technique that uses Google Search and other Google 
 > applications to find security holes in the configuration and computer code that websites use.
 
 - [Wikipedia](https://en.wikipedia.org/wiki/Google_hacking)
 
-# [The original page](https://web.archive.org/web/20021208144443/http://johnny.ihackstuff.com/security/googleDorks
-.shtml)
+- [The original page](https://web.archive.org/web/20021208144443/http://johnny.ihackstuff.com/security/googleDorks.shtml)
 
 ---
 
@@ -399,7 +406,7 @@ What did people find?
 
 ---
 
-## Quick aside: Shodan
+## Another aside: Shodan
 
 [Popular Shodan Searches](https://www.shodan.io/explore/popular)
 
@@ -413,6 +420,20 @@ Small group discussion. Consider:
 * Your users' information privacy
 * Your users' account security
 * Money
+* What are the trade-offs?
+
+---
+
+# Let's break some websites!
+
+## Go to http://pettwitter.com
+
+Note:
+
+- To a certain extent you can work at your own pace, but this tutorial is designed to encourage you to be social and 
+learn from each other.
+- I'll be stopping the group periodically to assess progress
+- At this point, I should switch to showing that on-screen
 
 ---
 
@@ -420,8 +441,8 @@ Small group discussion. Consider:
 
 * Discuss each vulnerability
 * Lecture: advanced variants
-* Questions!
-* Thanks!
+* Questions
+* Acknowledgements
 
 ---
 
