@@ -1,15 +1,94 @@
 
-# Get comfy with web security
+# Web Application Security with Django
 
-### PyCon 2015
+### DjangoCon 2018
 
-### Jacky Chang, Asheesh Laroia, Nicole Zuckerman
+### Jacinda Shelly
 
 ---
 
-# Turn your computer into a server
+## The history of this tutorial
 
-## Asheesh Laroia & Karen Rustad
+
+* PyCon 2015
+
+* A random email
+
+* A chance meetup earlier this year
+
+---
+
+# About Us
+
+## Instructor: Jacinda Shelly
+
+## TAs: William Hakizimana and Andrew Pinkham
+
+Note:
+
+- My background
+- Last six years working at Doctor On Demand
+- Prior to that worked at a defense contractor
+- Also have some academic credentials in this area, but they're old (MIT crypto and security class)
+- It IS useful to understand the difference between signing and encrypting something, how handshakes work, etc. I 
+think some people focus on these too much
+- Talk about James Mickens (next slide)
+
+- Ask William and Andrew to introduce themselves
+
+---
+
+> Sometimes, when I check my work email, I’ll find a message that says
+“Talk Announcement: Vertex-based Elliptic Cryptography on N-way
+Bojangle Spaces.”
+
+
+- "This World of Ours" - James Mickens
+- http://scholar.harvard.edu/files/mickens/files/thisworldofours.pdf
+
+Note:
+
+- Emphasize that this is not what this tutorial is about. It is about practical applications of security 
+vulnerabilities and hands-on practice.
+
+---
+
+# Schedule
+
+- Lecture: Example attacks (~30 minutes)
+- Exercise: Google Dorking (~15 minutes)
+- Group discussion: What are we trying to protect? (~15 minutes)
+- Lab time (~30 minutes)
+- Break (30 minutes)
+- Lab time (~60 minutes)
+- Wrap-up lecture (~30 minutes)
+
+Note:
+
+- The point of the first hour is getting you into a security mindset.
+- We'll start that with a half hour lecture about different web security topics and some example attacks.
+ We'll cover cross-site scripting, cross-site request forgery, etc. 
+ We'll discuss specific examples of web apps that were attacked, starting with a Django tutorial example.
+- After that, we'll break into small groups and ask each other what we're trying to protect.
+- After that, we'll spend 90 minutes breaking into a web application that we put together for this session.
+- Finally, we'll wrap-up with a walkthrough of what we learned and some key takeaways.
+
+---
+# About you
+
+Note:
+
+- I'd like to try to get a sense of what people's background and interests are.
+- Of those, that answered the pre-tutorial quiz, here were some common themes:
+    - Things to try against a website
+    - Security in production
+- Can I get three people to volunteer to talk about why you picked this tutorial to attend?
+- With that, we'll begin talking about these attacks.
+
+---
+## A hacked talk
+
+### Asheesh Laroia & Karen Rustad
 
 Note:
 - So last year at PyCon, a friend and I gave a talk about how to turn a computer into a home server.
@@ -68,57 +147,13 @@ So then it was crystal clear. My "friend" Luke Faraone must have decided to go t
 Note:
 * Default passwords
 * Components with known vulnerabilities
-- As we go through the other examples in this lulz section, you'll see different security issues that affected different sites. To help you keep track of them, Jacky and Nicole and I made a notes page (which we'll give to you at the end of the first hour) which reminds you of the specific attacks that each worked against each example.
+- As we go through the other examples in this lulz section, you'll see different security issues that affected different 
+sites. To help you keep track of them, Jacky and Nicole and I made a notes page (which we'll give to you at the end of the first hour) which reminds you of the specific attacks that each worked against each example.
 - So feel free to focus on being entertained, as we go through the rest of these examples, but remember that there is a test at the end -- you're going to actually have to use these attacks against some sample sites.
 
 ---
 
-# Introduction
 
-### Who we are
-
-Note:
-
-- My background
-- Talk about high school sec pwn
-- I work at Sandstorm
-- Have been a security engineer at Eventbrite
-- Jacky works at Eventbrite
-- Nicole works at Sosh
-
-
----
-
-# Table of contents
-
-- 30 min lecture: Fun attacks
-- 15 min exercise: Google Dorking
-- 15 min exercise: What are we trying to protect?
-- 90 min (+ break): Lab time
-- 30 min: Wrap-up, w/ best practices
-
-Note:
-
-- As you hopefully all know, this session is a three hour tutorial.
-- The point of the first hour is getting you into a security mindset.
-- We'll start that with a half hour lecture about different web security topics and attack strategies. We'll cover cross-site scripting, cross-site request forgery, that sort of thing. It's what you might call textbook web application security, but rather than just talk about how the attacks work, we'll show you specific examples of web apps that were attacked, starting with one of my own.
-- The next fifteen minutes, we'll do some exploring of other people's websites through a trick called Google Dorking.
-- After that, we'll break into small groups and ask each other what we're trying to protect.
-- Hopefully, by then, you'll be thinking like a security engineer. That's good, because after that, we'll spend two hours breaking into some web applications that we put together for this session.
--
-
----
-
-# About you
-
-Note:
-
-- Most of you in the room, I don't know you, so I thought I'd try to get a sense of what people's background and interests are.
-- Can I get three people to volunteer to talk about why you picked this tutorial to attend?
-- Also, there was a different security tutorial yesterday -- were any of you there? If so, great!
-- OK! Hopefully this will be fun. Jacky, Nicole, and I definitely want feedback on how the tutorial is, so we'll give you a link to a feedback form at the end.
-- The PyCon tutorial organizers also want you to give feedback.
-- So with that, we'll begin talking about these attacks.
 ---
 
 # TweetDeck
@@ -331,9 +366,27 @@ GET /?action=moinexec&c=rm%20-rf%20/
 
 ---
 
+## What are Google Dorks?
+
+> Google hacking, also named Google dorking, is a computer hacking technique that uses Google Search and other Google 
+> applications to find security holes in the configuration and computer code that websites use.
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Google_hacking)
+
+# [The original page](https://web.archive.org/web/20021208144443/http://johnny.ihackstuff.com/security/googleDorks
+.shtml)
+
+---
+
 # Google Dorking results
 
 What did people find?
+
+---
+
+## Quick aside: Shodan
+
+[Popular Shodan Searches](https://www.shodan.io/explore/popular)
 
 ---
 
