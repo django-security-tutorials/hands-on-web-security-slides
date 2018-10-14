@@ -21,7 +21,7 @@ right / left arrows on your keyboard.
 
 ## Check your learning
 
-* If you are the first person to finish an attack, send a PM to Jacinda and WIlliam with a link 
+* If you are the first person to finish an attack, send a PM to Jacinda and William with a link 
   to your work and the number from the slide heading. Once confirmed, announce in your team stream that you've 
   successfully exploited this vulnerability. 
 * Other people in your group should now turn to you for verification of vulnerability completion! 
@@ -114,7 +114,7 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 * Now click around the site. If you can see the text is _emphasized_, then make the page run some Javascript. (If you 
 need info about this, see the next slide.)
 * You can stop when you've found one. (For extra credit, find more than one.)
-* **Check your learning**: Once you've done that, open a private message conversation in Zulip with Jacinda / WIlliam 
+* **Check your learning**: Once you've done that, open a private message conversation in Zulip with Jacinda / William 
  or someone on your team who's already solved this and send them your attack link!
 
 ---
@@ -146,7 +146,7 @@ Many pieces of software are shipped with easy-to-guess default passwords, with t
 
 * Find the admin site.
 * Ask someone on Zulip to tell you the username they used; then, create a new pet on their behalf!
-* **Check your learning**: Send a message to Jacinda / WIlliam or another team member with a link to the pet you created!
+* **Check your learning**: Send a message to Jacinda / William or another team member with a link to the pet you created!
 
 For more hints, press '`s`'
 
@@ -177,7 +177,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 * For more hints, press '`s`'
 
-* **Check your learning**: Send a private message to Jacinda / WIlliam or a team member who's finished this step, saying 
+* **Check your learning**: Send a private message to Jacinda / William or a team member who's finished this step, saying 
 which function has the bug.
 
 Note:
@@ -280,7 +280,8 @@ Here's how cookies typically work:
 * When you log in at `/login/`, that page stores a "cookie" in your browser.
 * Then, when you make any follow-up requests, your browser sends that cookie to the server.
 
-The `/` page needs the _user ID_ in order to customize itself. It might need other data, too; typically, it represents the "session data" as a Python dict, e.g.: ```{'user_id' 3}```
+The `/` page needs the _user ID_ in order to customize itself. It might need other data, too; typically, it 
+represents the "session data" as a Python dict, e.g.: ```{'user_id': 3}```
 
 ---
 
@@ -290,7 +291,8 @@ The `/` page needs the _user ID_ in order to customize itself. It might need oth
 
 There are two common ways to use cookies to store session data.
 
-One is to use a `session ID` cookie; the cookie contains a random number. When server processes a request, it checks what _session data_ is associated with the session ID, loads that into memory, and hands it to the view function.
+One is to use a `session ID` cookie; the cookie contains a random number. When the server processes a request, it checks
+ what _session data_ is associated with the session ID, loads that into memory, and hands it to the view function.
 
 Another is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie! This way, the server receives the raw session data. No need to look it up in a database from session ID to session _data_.
 
@@ -312,72 +314,85 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 ### Your task (#5)
 
 * Use Django to parse the cookie data for your session.
-* Ask another team member what user ID they have.
+* Pick a user that isn't you!
 * Log in as them!
-* **Check your learning**: Send a private message to Jacinda, WIlliam, or a team member who's already finished explaining 
+* **Check your learning**: Send a private message to Jacinda, William, or a team member who's already finished explaining 
 why were you able to generate session data that the server trusted.
 * More details on _how_ on the next slide.
 
 ---
 
 
-### Implementation notes (1/4)
+### Implementation notes (1/5)
 
 * In your browser, open up the console, and type: ```document.cookie```
 * You'll see something like:
-```sessionid="foo:bar"; csrftoken=Iv2HhT3i20ft5zKdWTZ6YdofnHlAqrQQ"```
-* Pull out just the `sessionid` component - in this case ```"foo:bar"``` - we'll use this later.
+```sessionid="gibberish:moregibberish"; csrftoken=Iv2HhT3i20ft5zKdWTZ6YdofnHlAqrQQ"```
+* Pull out just the `sessionid` component - in this case ```"gibberish:moregibberish"``` - we'll use this later.
 
 ---
 
-### Implementation notes (2/4)
+### Implementation notes (2/5)
 
 Get the app running locally:
 
 ```
-git clone https://github.com/petwitter/pettwitter.git
+git clone https://github.com/django-security-tutorials/pettwitter.git
 cd pettwitter
-virtualenv env
-env/bin/pip install -r requirements.txt
-env/bin/python thesite/manage.py shell
+virtualenv -p python3 PET # This may not be necessary if python3 is your system Python
+source PET/bin/activate
+pip install -r requirements.txt
+pip install ipython # Optional, but will give you a nicer shell experience
+python thesite/manage.py shell
 ```
 
 ---
 
-### Implementation notes (3/4)
+### Implementation notes (3/5)
 
 Load the data as follows:
 
 ```
 >>> from importlib import import_module
 >>> from django.conf import settings
+>>> from django.utils.crypto import salted_hmac
 >>> session_module = import_module(settings.SESSION_ENGINE)
 >>> session_data = session_module.SessionStore(session_key="foo:bar")
 # Use whatever the sessionid= value was from your cookie
->>> print session_data.load()
+>>> print(session_data.load())
 {
-    '_auth_user_backend':
-        'django.contrib.auth.backends.ModelBackend',
-    '_auth_user_id':
-        2,
+    '_auth_user_id': '4',
+    '_auth_user_backend': 'django.contrib.auth.backends.ModelBackend',
+    '_auth_user_hash': '64afb0fb3f941f61b1c7c87f6de7988a2b1261da'
 }
 ```
 
 ---
 
-### Implemenation notes (4/4)
+### Implementation notes (4/5)
+
+* _auth_user_hash is constructed from the hashed value stored in the password field in the database
+* Now, where did we see that value again?
+
+---
+
+### Implementation notes (5/5)
 
 Now, modify the data:
 
 ```
 >>> session_data['_auth_user_id'] = THE_USER_ID_YOU_WANT_TO_BECOME
+>>> key_salt = "django.contrib.auth.models.AbstractBaseUser.get_session_auth_hash"
+>>> hashed_password = HASHED_PASSWORD_OF_USER_YOU_WANT_TO_BECOME
+>>> new_session_auth_hash = salted_hmac(key_salt, hashed_password).hexdigest()
+>>> session_data['_auth_user_hash'] = new_session_auth_hash
 >>> session_data.save()
 ```
 
 And extract something you can put into your browser:
 
 ```
->>> print session_data.session_key
+>>> print(session_data.session_key)
 'new:thing'
 ```
 
@@ -388,8 +403,16 @@ And extract something you can put into your browser:
 
 ---
 
-## SQL Injection
+## Did that seem...contrived?
 
+* You're probably thinking: "What idiot would override the UserAdmin like that?"
+* And you're partly right. This exploit was a _lot_ easier to accomplish prior to 1.7 when _auth_user_hash was added
+* BUT - dumps of user databases are not unheard of, and now you understand more about why SECRET_KEY needs to remain 
+secret
+
+---
+
+## SQL Injection
 ### Overview
 
 * Many web apps, behind the scenes, access data from a database by sending SQL queries to it.
@@ -402,13 +425,12 @@ And extract something you can put into your browser:
 ---
 
 ## SQL Injection
-
 ### Your goal (#6)
 
 * Find a view function that uses raw SQL queries, rather than the Django ORM.
 * (**Read the source** for this!)
 * Use this to modify a _pet you did not create_!
-* **Check your learning**: When you've done it, send a link to the pet page you updated to WIlliam / Jacinda or a team 
+* **Check your learning**: When you've done it, send a link to the pet page you updated to William / Jacinda or a team 
 member. They'll ask you _why_ your attack worked.
 
 * Type '`s`' to see hints.
@@ -423,49 +445,20 @@ Note:
 
 ---
 
-## Vulnerable dependencies
-
-### Overview
-
-* Like many Python web apps, `pettwitter` has a list of other libraries it depends on in `requirements.txt`.
-* Over time, these dependencies get new versions. Sometimes new versions fix bugs; other times, they add bugs.
-
----
-
-## Vulnerable dependencies
-
-### Your goal (#7)
-
-* Look at the dependencies of this app. Figure out which dependency had a recent change that introduced a security issue.
-* **Check your learning**: Send a private message to WIlliam / Jacinda or a team member who's completed this saying which 
-dependency is vulnerable, and how to exploit it.
-
-* For hints, type '`s`'.
-
-Note:
-- Dependencies can be pinned to specific versions. The vulnerable dependency in this case is _not_ pinned to a specific version.
-- When the app installs itself, it downloads packages from [PyPI](https://pypi.python.org).
-- You may need to look at `thesite/thesite/urls.py` to figure out how to abuse the vulnerability.
-- In which _version_ was the security vulnerability introduced?
-
----
-
 ## Abuse pickle storage
-
 ### Overview (extra credit)
 
 This app uses pickle! Look at the settings file.
 
 Pickle is a way to take Python data, like `{'key': ['val11', 'val2']}` and turn it into a file that can be loaded into Python later.
 
-Unfortunately, pickle is horrifyingly powerful: when loading data in from a pickle, Python will execute _code_ that the pickle file says to execute, not merely restore data.
+Unfortunately, pickle is powerful: when loading data in from a pickle, Python will execute _code_ that the pickle file says to execute, not merely restore data.
 
 Since Django's `signed_cookie` session store uses pickle to serialize the session data, you can cause _arbitrary code_ to run on the server.
 
 ---
 
 ## Abuse pickle storage
-
 ### Your goal (extra credit)
 
 * Take the work you did before to load custom session data, and
@@ -482,7 +475,6 @@ References:
 ---
 
 ## Abuse pickle storage
-
 ### Implementation hints
 
 * On your computer, create a Python object that does `os.system('echo zomg')` in the `__reduce__` method
@@ -490,43 +482,33 @@ References:
 * Use `pickle.loads()` on your own system to verify that when you load the data, it executes the `echo zomg` shell command.
 * Now, turn the session data from earlier into a `UserDict` subclass with a custom `__reduce__` method.
 * Now that _should_ cause remote code execution on the server.
-
+* This has not been tested on Python 3 / Django 2.1 and is not guaranteed to work.
 
 ---
 
 ## Fix the issues
-
 ### Your goal (extra credit)
 
 * If you're done early, we recommend you try to _fix_ some of the security issues in the app.
-* To do that, first _fork_ [the project](https://github.com/petwitter/pettwitter) on GitHub, then _clone_ the forked version to your computer.
+* To do that, first _fork_ [the project](https://github.com/django-security-tutorials/pettwitter) on GitHub, then 
+_clone_ the forked version to your computer.
 * To set up a local dev environment, see next slide.
 
 ---
 
 ## Fix the issues
-
 ### Development environment (extra credit)
 
 ```
 git clone YOUR_FORK_URL_HERE
 cd pettwitter
-virtualenv env
-env/bin/pip install -r requirements.txt
-env/bin/python thesite/manage.py syncdb
-env/bin/python thesite/manage.py runserver
+virtualenv -p python3 ENV_NAME
+source ENV_NAME/bin/activate
+pip install -r requirements.txt
+cd thesite
+python manage.py migrate
+python manage.py runserver
 ```
-
----
-
-## Notes for instructors only
-
-- Skip this slide if you're an attendee!
-- If you're an instructor, type '`s`' to see setup steps.
-
-Note:
-
-* This slide should tell instructors how to create an instance of the app.
 
 ---
 
@@ -535,7 +517,9 @@ Note:
 All the following people helped with this tutorial:
 
 * Jacky Chang
-* Nicole Zuckerman
 * Drew Fisher
+* William Hakizimana
 * Asheesh Laroia
 * Karen Rustad
+* Jacinda Shelly
+* Nicole Zuckerman
