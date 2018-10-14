@@ -471,64 +471,20 @@ vs
 ## Cross-site scripting
 
 * Theory: Escape content in a context-appropriate way
----
-
-## Cross-site scripting
-
-* Theory: Escape content in a context-appropriate way
-* Practice: Get good tools & trust 'em.
-    * Template auto-escaping.
----
-
-## Cross-site scripting
-
-* Theory: Escape content in a context-appropriate way
-* Practice: Get good tools & trust 'em.
-    * Template auto-escaping.
-
-```
-<script>
-var x = {{ thing }};
-```
-
----
-
-## Cross-site scripting
-
-* Theory: Escape content in a context-appropriate way
-* Practice: Get good tools & trust 'em.
-    * Template auto-escaping.
-
-```
-<script>
-var x = {{ thing }};
-```
-
-```
-var x = {{ simplejson.dumps(data, cls=JSONEncoderForHTML) }};
-```
----
-
-## Cross-site scripting
-
-* Theory: Escape content in a context-appropriate way
-* Practice: Get good tools & trust 'em.
-    * Template auto-escaping.
-
-```
-<script>
-var x = {{ thing }};
-```
-
-```
-var x = {{ simplejson.dumps(data, cls=JSONEncoderForHTML) }};
-```
-
-* Q. Escape data even from the database?
+* Practice: This is really, really hard to get right. Like crypto, use good tools.
+    * Django templates
+    * bleach
 
 ---
 
 ## Default passwords
+
+* Also, change the default admin URL
+* 2FA (Two-factor authentication)
+
+Note:
+- Obscurity should never be your only line of defense, but you also don't need to make it easy for attackers.  That
+ said, inventing your own crypto is bad and simpler, well-understood models are easier to secure
 
 ---
 
@@ -536,12 +492,12 @@ var x = {{ simplejson.dumps(data, cls=JSONEncoderForHTML) }};
 
 ```
 # If the user is not logged in, reject the request.
-if not request.user.is_authenticated():
-    return HttpResponse(status=403)
+if not request.user.is_authenticated:
+    raise PermissionDenied
 
 # If they're trying to update a non-existent pet, reject the
 # request with a 404.
-pet = get_object_or_404(communication_app.models.Pet, pk=pet_id)
+pet = get_object_or_404(Pet, pk=pet_id)
 ```
 
 ---
@@ -549,14 +505,9 @@ pet = get_object_or_404(communication_app.models.Pet, pk=pet_id)
 ## Authorization checking
 
 ```
-
-
-
-
 # If they're trying to update a non-existent pet, reject the
 # request with a 404.
-pet = get_object_or_404(communication_app.models.Pet,
-                        pk=pet_id)
+pet = get_object_or_404(Pet, pk=pet_id)
 ```
 
 ---
@@ -564,16 +515,13 @@ pet = get_object_or_404(communication_app.models.Pet,
 ## Authorization checking
 
 ```
-
-
-
-
 # If they're trying to update a non-existent pet, or a pet they
 # don't own, reject the request with a 404.
-pet = get_object_or_404(communication_app.models.Pet,
-                        pk=pet_id,
+pet = get_object_or_404(Pet, pk=pet_id,
                         user=request.user)
 ```
+
+- Question: 403 vs 404?
 
 ---
 
@@ -589,6 +537,10 @@ pet = get_object_or_404(communication_app.models.Pet,
 * `@login_required ` not enough
 * `Model.objects.filter(user=request.user)`
 * `Model.objects.for_user(request.user)`
+
+Note:
+
+- Grab some other decorators to share
 
 ---
 
@@ -613,9 +565,8 @@ pet = get_object_or_404(communication_app.models.Pet,
 
 ## Cross-site request forgery
 
-* POST to change data, and
+* POST to change data, and something that only a user _on that site_ can have
 * Django: `{%  csrf_token %}`
-* Flask-WTForms: `CsrfProtect(app)`
 ---
 
 ## Session data stealing
@@ -634,15 +585,16 @@ SECRET_KEY = '...'
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 ```
 
-```
-heroku config:set DJANGO_SECRET_KEY=something_actually_random
-```
+* Use a vault (Hashicorp, etc.)
+* Read up on best practices
+* Something is better than nothing
+
 ---
 
 ## Session data stealing
 
 * Keep secrets secret.
-* Don't use pickle.
+* Don't use pickle if you can help it. If you do, keep it firewalled.
 
 ---
 
@@ -697,11 +649,18 @@ query.execute(sql_query, pet_id, request.user.pk)
 ```
 ---
 
+## Just use the ORM
+
+- pets = Pet.object.filter(pet=pet_id, user=request.user)
+
+---
+
 ## SQL injection
 
 * Don't use raw SQL.
 * Use an ORM (sqlalchemy, Django ORM).
-* Use parameterized queries.
+* If you must, use parameterized queries.
+* Read _all_ the ORM documentation before you think you must.
 
 ---
 
@@ -725,74 +684,60 @@ assert(response.status_code, 404)
 ```
 
 ---
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/dependency-diff.png" style="border: none;">
-
----
-
 ## Vulnerable dependencies
 
 * Libraries run with full privilege.
-
----
-
-## Vulnerable dependencies
-
-* Libraries run with full privilege.
-
-```
-$ cat requirements.txt
-Django==1.4.20
-dj-database-url==0.3.0
-asheeshs-django-optimizer
-```
----
-
-## Vulnerable dependencies
-
-* Libraries run with full privilege.
-
-```
-$ cat requirements.txt
-Django==1.4.20
-dj-database-url==0.3.0
-asheeshs-django-optimizer
-```
-
 * Pin your dependencies; get fresh versions, and read the diff.
 
 ---
 
-## How to steal cookies
+## Session stealing
 
 ```
 document.cookie
-
 ```
+- [SESSION_COOKIE_SAMESITE](https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite)
+- https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite
 
 ---
 
-<img src="http://www.mit.edu/~asheesh/sec-talk/set-cookie.png" style="border: none;">
+## Signed Cookies
 
----
-
-
-## Extra attacks
-
-* Cookies
-    * `httponly`
-    * `secure`
-* Subdomains + cookies
-* XSS via file upload
+- https://docs.djangoproject.com/en/2.1/topics/http/sessions/#using-cookie-based-sessions
 
 ---
 
 ## Resources
 
-* _Great book_: The Tangled Web by Michael Zalewski
-* Open Web App Security Project, e.g. Top 10
+* The Tangled Web by Michael Zalewski
+* Open Web App Security Project (OWASP Top 10), e.g. Top 10
 * Django security docs
-* `security-announce` email lists everywhere
+* `security` email lists everywhere
+* Security Now and other security related podcasts
+* Anything (talk, paper, etc. by James Mickens): https://mickens.seas.harvard.edu/wisdom-james-mickens
+* [Black Hat Python Book](https://www.amazon.com/Black-Hat-Python-Programming-Pentesters/dp/1593275900/)
+
+Note:
+- What are other people's favorite resources?
+---
+
+## Django Deployment Checklist
+
+- https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+
+---
+
+## Things you can run yourself
+
+- Metasploit
+- Google Dorking
+- Nmap
+- Jack the Ripper
+- Burpsuite
+
+---
+
+# Other Questions
 
 ---
 
@@ -801,7 +746,10 @@ document.cookie
 All the following people helped with this tutorial:
 
 * Jacky Chang
-* Nicole Zuckerman
 * Drew Fisher
+* William Hakizimana
 * Asheesh Laroia
+* Andrew Pinkham
 * Karen Rustad
+* Jacinda Shelly
+* Nicole Zuckerman
