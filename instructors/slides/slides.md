@@ -605,6 +605,21 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 <img src="http://www.mit.edu/~asheesh/sec-talk/gaynor-deli-2.png">
 
 ---
+## Session stealing
+
+```
+document.cookie
+```
+- [SESSION_COOKIE_SAMESITE](https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite)
+- https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite
+
+---
+
+## Signed Cookies
+
+- https://docs.djangoproject.com/en/2.1/topics/http/sessions/#using-cookie-based-sessions
+
+---
 
 ## SQL injection
 
@@ -691,21 +706,7 @@ assert(response.status_code, 404)
 
 ---
 
-## Session stealing
 
-```
-document.cookie
-```
-- [SESSION_COOKIE_SAMESITE](https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite)
-- https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite
-
----
-
-## Signed Cookies
-
-- https://docs.djangoproject.com/en/2.1/topics/http/sessions/#using-cookie-based-sessions
-
----
 
 ## Resources
 
