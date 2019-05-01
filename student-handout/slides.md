@@ -458,7 +458,7 @@ Since Django's `signed_cookie` session store uses pickle to serialize the sessio
 ---
 
 ## Abuse pickle storage
-### Your goal (extra credit)
+### Your goal (#7 / extra credit)
 
 * Take the work you did before to load custom session data, and
 * Instead of providing normal session data, provide normal session data _plus_ make the server execute some code.
@@ -486,7 +486,7 @@ References:
 ---
 
 ## Fix the issues
-### Your goal (extra credit)
+### Your goal (#8 / extra credit)
 
 * If you're done early, we recommend you try to _fix_ some of the security issues in the app.
 * To do that, first _fork_ [the project](https://github.com/django-security-tutorials/pettwitter) on GitHub, then 
