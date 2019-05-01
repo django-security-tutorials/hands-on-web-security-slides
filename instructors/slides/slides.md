@@ -1,7 +1,7 @@
 
 # Web Application Security with Django
 
-### DjangoCon 2018
+### PyCon 2019
 
 ### Jacinda Shelly
 
@@ -14,9 +14,9 @@
 
 * A random email
 
-* A chance meetup earlier this year
+* A chance meetup last year
 
-* A tutorial proposal
+* A tutorial proposal for DjangoCon 2018
 
 * Many, many updates
 
@@ -31,23 +31,19 @@ Note:
 
 ---
 
-# About Us
+# About Me
 
 ## Instructor: Jacinda Shelly
-
-## TAs: William Hakizimana and Andrew Pinkham
 
 Note:
 
 - My background
-- Last six years working at Doctor On Demand
-- Prior to that worked at a defense contractor
+- CTO / First engineer at Doctor On Demand
+- Prior to that worked at a small defense contractor 
 - Also have some academic credentials in this area, but they're old (MIT crypto and security class)
 - It IS useful to understand the difference between signing and encrypting something, how handshakes work, etc. I 
 think some people focus on these too much
 - Talk about James Mickens (next slide)
-
-- Ask William and Andrew to introduce themselves
 
 ---
 
@@ -100,66 +96,12 @@ Note:
 - Can I get three people to volunteer to talk about why you picked this tutorial to attend?
 - With that, we'll begin talking about these attacks.
 - Any questions before we dive in?
-
----
-## A hacked talk
-
-### Asheesh Laroia & Karen Rustad
-
-Note:
-- Asheesh was talking at PyCon 2014 about setting up a server and used Nate Aune's version of the Django polls tutorial
-- I found Nate Aune's version of the Django polls tutorial, and loaded it up.
-- At this point, I said, people should start voting! Which is better -- Chewbacca or Caffeine?
-- But then I noticed there was a new entry in the list, labeled lol.
-- (20:32 is when I got pwned, for screencap purposes.)
-- Here's what happened
+- Most of the examples are unchanged from Asheesh's tutorial in 2015. The bulk of my work was in updating the actual 
+  interactive app. The graphics / design may look dated, but the attacks are still relevant.
 
 ---
 
-<img src="http://www.mit.edu/~asheesh/sec-talk/basic-polls-app.png">
-
-Note:
-
-The Django admin site was enabled, and whatever default users and passwords Nate had used, that's what I was using, too.
-
-So then it was crystal clear. My "friend" must have decided to go to the admin site and change the poll to
- increase the lulz factor of the talk.
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/polls-app-page-3.png">
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/pwned.png">
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/pwned-2.png">
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/github-polls-app.png">
-
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/github-polls-app-password.png">
-
-Note:
-
-* Default passwords / urls
-* Components with known vulnerabilities (older versions, plugins)
-- As we go through the other examples in this section, you'll see different security issues that affected different 
-sites. 
-- As we go through the rest of these examples, remember that there is a test at the end -- you're going to 
-actually have to use these attacks against some sample sites.
-- Most of these are unchanged from Asheesh's tutorial in 2015. The bulk of my work was in updating the actual 
-interactive app. The graphics / design may look dated, but the attacks are still relevant.
-
----
-
-# TweetDeck
+# TweetDeck (XSS)
 
 <img src="https://g.twimg.com/about/products/tweetdeck/modal/modal1.jpg">
 
@@ -191,6 +133,10 @@ $(&#39;.xss&#39;).parents().eq(1).find(&#39;a&#39;).eq(1).click();
 $(&#39;[data-action=retweet]&#39;).click();
 <br>alert(&#39;XSS in Tweetdeck&#39;)&lt;/script&gt;<img src="https://abs.twimg.com/emoji/v1/72x72/2665.png" style="border: none; top: 30px; position: relative;"></p>&mdash; *arrrrndy (@derGeruhn) <a href="https://twitter.com/derGeruhn/status/476764918763749376">June 11, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Note:
+
+- It wasn't long before someone tweeted this.
 
 ---
 
@@ -263,11 +209,70 @@ Note:
 Note:
 - Cross site scripting
 - Ask attendees what _further_ damage the JS could have done.
-- Delete all a user's tweet
+- Delete all a user's tweets
 
 ---
 
-# Why allowing GET to alter state can get you in trouble
+## A hacked talk
+
+### Asheesh Laroia & Karen Rustad
+
+Note:
+- Asheesh was talking at PyCon 2014 about setting up a server and used Nate Aune's version of the Django polls tutorial
+- Found Nate Aune's version of the Django polls tutorial, and loaded it up.
+- At this point, I said, people should start voting! Which is better -- Chewbacca or Caffeine?
+- But then I noticed there was a new entry in the list, labeled lol.
+- (20:32 is when I got pwned, for screencap purposes.)
+- Here's what happened
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/basic-polls-app.png">
+
+Note:
+
+The Django admin site was enabled, and whatever default users and passwords Nate had used, that's what I was using, too.
+
+So then it was crystal clear. My "friend" must have decided to go to the admin site and change the poll to
+ increase the lulz factor of the talk.
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/polls-app-page-3.png">
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/pwned.png">
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/pwned-2.png">
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/github-polls-app.png">
+
+
+---
+
+<img src="http://www.mit.edu/~asheesh/sec-talk/github-polls-app-password.png">
+
+Note:
+
+* Default passwords / urls
+* Components with known vulnerabilities (older versions, plugins)
+- As we go through the other examples in this section, you'll see different security issues that affected different 
+sites. 
+- As we go through the rest of these examples, remember that there is a test at the end -- you're going to 
+actually have to use these attacks against some sample sites.
+
+
+---
+
+
+---
+
+# Why allowing GET to alter state can get you in trouble (CSRF)
 
 ---
 
@@ -303,8 +308,12 @@ GET /user/1/delete
 Opening for cross-site request forgery
 
 ---
+## Directory Traversal
 
 <img src="http://www.mit.edu/~asheesh/sec-talk/moinmoin.png">
+
+Note:
+ - Subset of improper authorization checking
 
 ---
 
@@ -356,13 +365,15 @@ GET /?action=moinexec&c=rm%20-rf%20/
 
 ## Summary
 
-* Security misconfiguration (default password)
+* Cross-site scripting (TweetDeck)
+
 ---
 
 ## Summary
 
-* Security misconfiguration (default password)
 * Cross-site scripting (TweetDeck)
+* Security misconfiguration (default password)
+
 ---
 
 ## Summary
@@ -370,6 +381,7 @@ GET /?action=moinexec&c=rm%20-rf%20/
 * Security misconfiguration (default password)
 * Cross-site scripting (TweetDeck)
 * Cross-site request forgery (GET to delete)
+
 ---
 
 ## Summary
@@ -377,7 +389,7 @@ GET /?action=moinexec&c=rm%20-rf%20/
 * Security misconfiguration (default password)
 * Cross-site scripting (TweetDeck)
 * Cross-site request forgery (GET to delete)
-* Code injection (MoinMoin bug)
+* Code injection / directory traversal (MoinMoin bug)
 
 ---
 
@@ -385,7 +397,7 @@ GET /?action=moinexec&c=rm%20-rf%20/
 
 * 15 minutes of Google Dorking
 * Think (5m), Pair (5m), Share (5m)
-* http://www.exploit-db.com/google-dorks/
+* https://www.exploit-db.com/google-hacking-database
 
 ---
 
@@ -410,6 +422,10 @@ What did people find?
 
 [Popular Shodan Searches](https://www.shodan.io/explore/popular)
 
+Note:
+
+- Shodan is for other ports what Google is for 80/443
+
 ---
 
 # What is at risk -- for you?
@@ -421,6 +437,15 @@ Small group discussion. Consider:
 * Your users' account security
 * Money
 * What are the trade-offs?
+
+---
+
+
+# Other Questions?
+
+Note:
+
+- Before we go to the practical portion, are there any other questions?
 
 ---
 
@@ -544,6 +569,64 @@ Note:
 
 ---
 
+## SQL injection
+
+```
+sql_query = '''SELECT * from communication_app_pet WHERE id=%s
+AND user_id=%d''' % (
+        pet_id,
+        request.user.pk,
+    )
+```
+
+---
+
+## SQL injection
+
+```
+sql_query = '''SELECT * from communication_app_pet WHERE id=%s
+AND user_id=%d''' % (
+        pet_id,
+        request.user.pk,
+    )
+```
+
+vs
+
+```
+sql_query = '''SELECT * from communication_app_pet WHERE id=?
+AND user_id=?'''
+
+query.execute(sql_query, pet_id, request.user.pk)
+```
+
+---
+
+<img width="400" src="http://www.mit.edu/~asheesh/sec-talk/select.png" style="border: none;">
+
+```
+sql_query = '''SELECT * from communication_app_pet WHERE id=?
+AND user_id=?'''
+
+query.execute(sql_query, pet_id, request.user.pk)
+```
+---
+
+## Just use the ORM
+
+- pets = Pet.object.filter(pet=pet_id, user=request.user)
+
+---
+
+## SQL injection
+
+* Don't use raw SQL.
+* Use an ORM (sqlalchemy, Django ORM).
+* If you must, use parameterized queries.
+* Read _all_ the ORM documentation before you think you must.
+
+---
+
 ## Secure by default
 
 ---
@@ -610,74 +693,17 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 ```
 document.cookie
 ```
-- [SESSION_COOKIE_SAMESITE](https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite)
-- https://docs.djangoproject.com/en/2.1/ref/settings/#session-cookie-samesite
+- [SESSION_COOKIE_SAMESITE](https://docs.djangoproject.com/en/2.2/ref/settings/#session-cookie-samesite)
+- https://docs.djangoproject.com/en/2.2/ref/settings/#session-cookie-samesite
 
 ---
 
 ## Signed Cookies
 
-- https://docs.djangoproject.com/en/2.1/topics/http/sessions/#using-cookie-based-sessions
+- https://docs.djangoproject.com/en/2.2/topics/http/sessions/#using-cookie-based-sessions
 
 ---
 
-## SQL injection
-
-```
-sql_query = '''SELECT * from communication_app_pet WHERE id=%s
-AND user_id=%d''' % (
-        pet_id,
-        request.user.pk,
-    )
-```
-
----
-
-## SQL injection
-
-```
-sql_query = '''SELECT * from communication_app_pet WHERE id=%s
-AND user_id=%d''' % (
-        pet_id,
-        request.user.pk,
-    )
-```
-
-vs
-
-```
-sql_query = '''SELECT * from communication_app_pet WHERE id=?
-AND user_id=?'''
-
-query.execute(sql_query, pet_id, request.user.pk)
-```
-
----
-
-<img width="400" src="http://www.mit.edu/~asheesh/sec-talk/select.png" style="border: none;">
-
-```
-sql_query = '''SELECT * from communication_app_pet WHERE id=?
-AND user_id=?'''
-
-query.execute(sql_query, pet_id, request.user.pk)
-```
----
-
-## Just use the ORM
-
-- pets = Pet.object.filter(pet=pet_id, user=request.user)
-
----
-
-## SQL injection
-
-* Don't use raw SQL.
-* Use an ORM (sqlalchemy, Django ORM).
-* If you must, use parameterized queries.
-* Read _all_ the ORM documentation before you think you must.
-
----
 
 ## Testing
 
@@ -685,6 +711,12 @@ query.execute(sql_query, pet_id, request.user.pk)
 # Positive assertions
 assert(response.status_code, 200)
 ```
+
+Note:
+
+- There's clearly no testing in this app. It can be a powerful resource for security.
+- Both TDD and building things after discovery
+- Also can use other analysis tools as part of CI
 
 ---
 
@@ -702,16 +734,17 @@ assert(response.status_code, 404)
 ## Vulnerable dependencies
 
 * Libraries run with full privilege.
+* Only use trusted sources
 * Pin your dependencies; get fresh versions, and read the diff.
+* Turn on Github security vulnerabilities
+* pyup / requires.io
 
 ---
-
-
 
 ## Resources
 
 * The Tangled Web by Michael Zalewski
-* Open Web App Security Project (OWASP Top 10), e.g. Top 10
+* Open Web App Security Project (e.g. OWASP Top 10)
 * Django security docs
 * `security` email lists everywhere
 * Security Now and other security related podcasts
@@ -720,33 +753,23 @@ assert(response.status_code, 404)
 
 Note:
 - What are other people's favorite resources?
+
 ---
 
 ## Django Deployment Checklist
 
-- https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+- https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 ---
 
 ## Things you can run yourself
 
+- Github security vulnerabilities
 - Metasploit
 - Google Dorking
 - Nmap
 - Jack the Ripper
 - Burpsuite
-
----
-
-# Other Questions
-
-Note:
-
-- Before we walk through some of the code, I'd like to know if people had specific questions.
-
----
-
-# Code Tour
 
 ---
 
