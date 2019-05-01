@@ -1,6 +1,6 @@
 # Student handout
 
-### Web Application Security with Django, DjangoCon 2018
+### Web Application Security with Django, PyCon 2019
 
 Navigate these slides by clicking the arrows at the bottom or use the 
 right / left arrows on your keyboard.
@@ -9,30 +9,29 @@ right / left arrows on your keyboard.
 
 ## Make the most of lab time (#0)
 
-* You have 90 minutes to get some hands-on practice. Work alone or find a buddy.
+* You have 90 minutes to get some hands-on practice.
 
-* Visit [pettwitter.com](https://pettwitter.com) and click the link to get in your small group's Zulip stream and app instance.
+* Visit [pettwitter.com](https://pettwitter.com) and click the link to find your group's test environment.
 
 * Attack it, with the help of these slides.
 
-* Some attacks are labeled **extra credit**; if you're new to security, I encourage you to skip those so you can get to all the important attacks.
+* Some attacks are labeled **extra credit**; if you're new to security, I encourage you to skip those so you can 
+  get to all the important attacks.
 
 ---
 
 ## Check your learning
 
-* If you are the first person to finish an attack, send a PM to Jacinda and William with a link 
-  to your work and the number from the slide heading. Once confirmed, announce in your team stream that you've 
+* If you are the first person to finish an attack, send a PM to Jacinda with a link 
+  to your work and the number from the slide heading. Once confirmed, announce in your group's channel that you've 
   successfully exploited this vulnerability. 
-* Other people in your group should now turn to you for verification of vulnerability completion! 
+* Other people in your group should now turn to you for verification of vulnerability completion. 
   
 ---
 
 ## Social guidelines
 
-* Never type on someone else's laptop. Type on yours & show them; then, let them type on theirs.
 * When you discover a peer doesn't know something, _don't_ say "Wow, I can't believe you don't know that!"
-* If you need to correct someone, make sure they're in a frame of mind to make use of your correction.
 * If you offer to help someone, _truly engage_. Be next to them when doing so and answer follow-up questions.
 * Respect people, and their questions, independent of their background, apparent ethnicity, gender, etc.
 
@@ -40,7 +39,7 @@ Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
 
 ---
 
-## Admit if you don't know something. Help if you do.
+## TL;DR. Be kind.
 
 
 [XKCD 1053 - Ten Thousand](https://xkcd.com/1053/)
@@ -63,7 +62,7 @@ Note:
 
 ## Be social
 
-* One more thing: use your small group's Zulip stream and topics to share your attacks with your peers. They will enjoy
+* Use your small group's Slack channel to share your attacks with your peers. They will enjoy
  clicking a link that does something completely surprising.
 * Having said that, don't be malicious. It's OK to send people links that do bad things on the Pettwitter site, but 
 don't do things that would cause their computers to lock up, or other bad things that are outside the scope of Pettwitter.
@@ -111,11 +110,11 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 ### Your goal (#1)
 
 * Add some `<em>emphasized text</em>` to different text inputs in the site.
-* Now click around the site. If you can see the text is _emphasized_, then make the page run some Javascript. (If you 
-need info about this, see the next slide.)
+* Now click around the site. If you can see the text is _emphasized_, then make the page run some Javascript. 
+  (Code example on the next slide)
 * You can stop when you've found one. (For extra credit, find more than one.)
-* **Check your learning**: Once you've done that, open a private message conversation in Zulip with Jacinda / William 
- or someone on your team who's already solved this and send them your attack link!
+* **Check your learning**: Once you've done that, send a DM to Jacinda or someone on your team who's already 
+  solved this and send them your attack link!
 
 ---
 
@@ -145,8 +144,8 @@ Many pieces of software are shipped with easy-to-guess default passwords, with t
 ## Your goal (#2)
 
 * Find the admin site.
-* Ask someone on Zulip to tell you the username they used; then, create a new pet on their behalf!
-* **Check your learning**: Send a message to Jacinda / William or another team member with a link to the pet you created!
+* Ask someone on Slack to tell you the username they used; then, create a new pet on their behalf!
+* **Check your learning**: Send a DM to Jacinda or a team member with a link to the pet you created!
 
 For more hints, press '`s`'
 
@@ -172,20 +171,52 @@ You might take care to have an HTML form only appear for authorized users. Craft
 
 ### Your goal (#3)
 
-* Ask someone on Zulip for a pet ID that isn't yours.
+* Ask someone on Slack for a pet ID that isn't yours.
 * Find a way to modify that pet.
 
 * For more hints, press '`s`'
 
-* **Check your learning**: Send a private message to Jacinda / William or a team member who's finished this step, saying 
-which function has the bug.
+* **Check your learning**: Send a DM to Jacinda or a team member who's finished this step, 
+  saying which function has the bug.
 
 Note:
 - Use your browser's "Inspect element" feature to change the `form action` on a pet profile page.
-- Read the [code](https://github.com/django-security-tutorials/pettwitter/blob/master/thesite/communication_app/views.py) for the views,
- or just try each of the forms on the pet profile page.
+- Read the [code](https://github.com/django-security-tutorials/pettwitter/blob/master/thesite/communication_app/views.py) 
+  for the views, or just try each of the forms on the pet profile page.
 - Small group Q&A: What was special about this view that meant it had an authorization problem? How might you have written a bug like this?
 
+
+---
+
+## SQL Injection
+### Overview
+
+* Many web apps, behind the scenes, access data from a database by sending SQL queries to it.
+* e.g.: `DELETE from users WHERE user_id=3;`
+* If `user_id` were controlled by the attacker, the attacker could change the query to be:
+```DELETE FROM users WHERE user_id=user_id;``` and you'd lose all your user data.
+* SQL mappers like the Django ORM automatically escape parameters, so this might instead be:
+```DELETE from users WHERE user_id="user_id";```which would delete nothing.
+
+---
+
+## SQL Injection
+### Your goal (#4)
+
+* Find a view function that uses raw SQL queries, rather than the Django ORM.
+* (**Read the source** for this!)
+* Use this to modify a _pet you did not create_!
+* **Check your learning**: When you've done it, send a link to the pet page you updated to Jacinda or a team 
+member. They'll ask you _why_ your attack worked.
+
+* Type '`s`' to see hints.
+
+Note:
+- Once you find the vulnerable view function, find the form in the site that submits to it.
+- If you own (e.g.) pet #5, go to its profile page, and notice that there's a form that POSTs to `/pets/update/5`
+- Change it to instead POST to `/pets/update/3--` (the `--` is important!)
+- Submit. Hooray!
+- Think about why this worked. [Hint](http://docs.oracle.com/cd/B14117_01/server.101/b10759/sql_elements006.htm)
 
 ---
 
@@ -203,18 +234,18 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 ### Overview (2/2)
 
-* If _victim.com_ has a CSRF vulnerability, then Alice can make a page on _evil.com_ that, through Bob merely visiting 
-  her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
+* If _victim.com_ has a CSRF vulnerability, then Alice can make a page on _evil.com_ that, through Bob merely 
+  visiting her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
 * The way cookies work is that they flow with every request Bob makes to _victim.com_.
-* An IMG tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_, or access data Bob's 
-data on _victim.com_ because Bob is logged in.
+* An IMG tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_, or access Bob's 
+  data on _victim.com_ because Bob is logged in.
 * So in this way, Alice causes Bob to silently take actions on another site (i.e. "cross site").
 
 ---
 
 ## Cross site request forgery
 
-### Your goal (#4)
+### Your goal (#5)
 
 * Create a web page that, when viewed, creates a new pet owned by whoever visits the page.
 * You may want to ***read the app code*** to find a view function that accepts GET as well as POST.
@@ -222,7 +253,7 @@ data on _victim.com_ because Bob is logged in.
 
 * Press '`s`' for hints.
 
-* **Check your learning**: Send your JSFiddle link to your instructors or team members.
+* **Check your learning**: Send your JSFiddle link to your instructor or team members.
 
 Note:
 - To figure out exactly how to craft the GET URL, start by using _Inspect Element_ to modify the form so that it is `method=GET` on your own computer.
@@ -244,11 +275,11 @@ See [this StackOverflow question](http://stackoverflow.com/questions/17940811/ex
 
 ## Cross-site request forgery: extra credit (optional)
 
-### Your task (#4b)
+### Your task (#5b)
 
 * Make a web page that, upon visiting it, causes all a user's pet info data to be deleted.
 
-* **Check your learning**: Share a link in Zulip. (This time, it's good to warn people!)
+* **Check your learning**: Share a link in Slack. (This time, it's good to warn people!)
 
 Note:
 - Use JSFiddle again for hosting.
@@ -262,7 +293,7 @@ Note:
 
 HTTP is a "stateless" protocol, meaning each HTTP request is separate from other ones.
 
-So let's say you log in at `/login/` and visit the home page (`/') of a website. The homepage ought to know that you've logged in, so it can customize the homepage just for you.
+So let's say you log in at `/login/` and visit the home page (`/`) of a website. The homepage ought to know that you've logged in, so it can customize the homepage just for you.
 
 Since these requests are separate, there must be some way for the `/login/` page to store some information so that `/` can look at it -- it needs to store at least your user ID.
 
@@ -311,13 +342,13 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 
 ## Generate sessions as others
 
-### Your task (#5)
+### Your task (#6)
 
 * Use Django to parse the cookie data for your session.
 * Pick a user that isn't you!
 * Log in as them!
-* **Check your learning**: Send a private message to Jacinda, William, or a team member who's already finished explaining 
-why were you able to generate session data that the server trusted.
+* **Check your learning**: Send a private message to Jacinda or a team member who's already finished this task 
+ explaining why were you able to generate session data that the server trusted.
 * More details on _how_ on the next slide.
 
 ---
@@ -339,6 +370,7 @@ Get the app running locally:
 ```
 git clone https://github.com/django-security-tutorials/pettwitter.git
 cd pettwitter
+# Below is one example of creating a virtualenv. There are others. Feel free to use those if you know how.
 virtualenv -p python3 PET # This may not be necessary if python3 is your system Python
 source PET/bin/activate
 pip install -r requirements.txt
@@ -412,39 +444,6 @@ secret
 
 ---
 
-## SQL Injection
-### Overview
-
-* Many web apps, behind the scenes, access data from a database by sending SQL queries to it.
-* e.g.: `DELETE from users WHERE user_id=3;`
-* If `user_id` were controlled by the attacker, the attacker could change the query to be:
-```DELETE FROM users WHERE user_id=user_id;``` and you'd lose all your user data.
-* SQL mappers like the Django ORM automatically escape parameters, so this might instead be:
-```DELETE from users WHERE user_id="user_id";```which would delete nothing.
-
----
-
-## SQL Injection
-### Your goal (#6)
-
-* Find a view function that uses raw SQL queries, rather than the Django ORM.
-* (**Read the source** for this!)
-* Use this to modify a _pet you did not create_!
-* **Check your learning**: When you've done it, send a link to the pet page you updated to William / Jacinda or a team 
-member. They'll ask you _why_ your attack worked.
-
-* Type '`s`' to see hints.
-
-Note:
-- Once you find the vulnerable view function, find the form in the site that submits to it.
-- If you own (e.g.) pet #5, go to its profile page, and notice that there's a form that POSTs to `/pets/update/5`
-- Change it to instead POST to
-`/pets/update/3--` (the `--` is important!)
-- Submit. Hooray!
-- Think about why this worked. [Hint](http://docs.oracle.com/cd/B14117_01/server.101/b10759/sql_elements006.htm)
-
----
-
 ## Abuse pickle storage
 ### Overview (extra credit)
 
@@ -482,7 +481,7 @@ References:
 * Use `pickle.loads()` on your own system to verify that when you load the data, it executes the `echo zomg` shell command.
 * Now, turn the session data from earlier into a `UserDict` subclass with a custom `__reduce__` method.
 * Now that _should_ cause remote code execution on the server.
-* This has not been tested on Python 3 / Django 2.1 and is not guaranteed to work.
+* This has not been tested on Python 3 / Django 2.2 and is not guaranteed to work.
 
 ---
 
@@ -520,6 +519,7 @@ All the following people helped with this tutorial:
 * Drew Fisher
 * William Hakizimana
 * Asheesh Laroia
+* Andrew Pinkham
 * Karen Rustad
 * Jacinda Shelly
 * Nicole Zuckerman
