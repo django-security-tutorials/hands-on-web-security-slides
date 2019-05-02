@@ -103,7 +103,7 @@ Note:
 
 # TweetDeck (XSS)
 
-<img src="https://g.twimg.com/about/products/tweetdeck/modal/modal1.jpg">
+<img src="https://media.wired.com/photos/593315b068cb3b3dc4097c8f/master/w_1164,c_limit/TweetDeck-1.3-Screenshot.jpg">
 
 Note:
 
