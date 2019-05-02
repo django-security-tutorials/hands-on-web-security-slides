@@ -378,16 +378,16 @@ GET /?action=moinexec&c=rm%20-rf%20/
 
 ## Summary
 
-* Security misconfiguration (default password)
 * Cross-site scripting (TweetDeck)
+* Security misconfiguration (default password)
 * Cross-site request forgery (GET to delete)
 
 ---
 
 ## Summary
 
-* Security misconfiguration (default password)
 * Cross-site scripting (TweetDeck)
+* Security misconfiguration (default password)
 * Cross-site request forgery (GET to delete)
 * Code injection / directory traversal (MoinMoin bug)
 
