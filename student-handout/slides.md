@@ -258,6 +258,7 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 Note:
 - To figure out exactly how to craft the GET URL, start by using _Inspect Element_ to modify the form so that it is `method=GET` on your own computer.
 - Since you will have to embed a pet name within the attack `IMG` tag, you may need to use the app's "delete all your pet data" before attacking someone else.
+- Don't forget a trailing slash! If you leave it off, you'll cause the server to redirect and it won't work.
 - Small group discussion: Ask the student, How did that work?
 
 ---
