@@ -62,14 +62,14 @@ vulnerabilities and hands-on practice.
 
 ---
 
-# Schedule
+# Order of Operations
 
-- Lecture: Example attacks (~30 minutes)
-- Exercise: Google Dorking (~15 minutes)
-- Group discussion: What are we trying to protect? (~15 minutes)
-- Lab time (~30 minutes)
+- Lecture: Example attacks
+- Exercise: Google Dorking
+- Group discussion: What are we trying to protect?
+- Lab time (Part 1)
 - Break (30 minutes)
-- Lab time (~60 minutes)
+- Lab time (Part 2)
 - Wrap-up lecture (~30 minutes)
 
 Note:
@@ -502,9 +502,9 @@ vs
 
 ---
 
-## Default passwords
+## Defaults (not just passwords)
 
-* Also, change the default admin URL
+* Change the default admin URL
 * 2FA (Two-factor authentication)
 
 Note:
