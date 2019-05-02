@@ -374,7 +374,7 @@ cd pettwitter
 # Below is one example of creating a virtualenv. There are others. Feel free to use those if you know how.
 virtualenv -p python3 PET # This may not be necessary if python3 is your system Python
 source PET/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt --no-use-pep517
 pip install ipython # Optional, but will give you a nicer shell experience
 python thesite/manage.py shell
 ```
@@ -440,7 +440,7 @@ And extract something you can put into your browser:
 
 * You're probably thinking: "What idiot would override the UserAdmin like that?"
 * And you're partly right. This exploit was a _lot_ easier to accomplish prior to 1.7 when _auth_user_hash was added
-* BUT - dumps of user databases are not unheard of, and now you understand more about why SECRET_KEY needs to remain 
+* BUT - dumps of user databases happen all the time, and now you understand more about why SECRET_KEY needs to remain 
 secret
 
 ---
