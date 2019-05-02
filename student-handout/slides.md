@@ -360,7 +360,7 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 * In your browser, open up the console, and type: ```document.cookie```
 * You'll see something like:
 ```sessionid="gibberish:moregibberish"; csrftoken=Iv2HhT3i20ft5zKdWTZ6YdofnHlAqrQQ"```
-* Pull out just the `sessionid` component - in this case ```"gibberish:moregibberish"``` - we'll use this later.
+* Copy the `sessionid` component - in this case ```"gibberish:moregibberish"``` - we'll use this later.
 
 ---
 
