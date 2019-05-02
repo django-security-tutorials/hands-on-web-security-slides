@@ -465,9 +465,15 @@ learn from each other.
 # Wrap-up
 
 * Discuss each vulnerability
-* Lecture: advanced variants
-* Questions
-* Acknowledgements
+* An ounce of prevention
+* Resources
+* Questions / Acknowledgements
+
+Note:
+
+- Talk about each vulnerability
+- Talk about some best practices
+- Resources for future learning
 
 ---
 
