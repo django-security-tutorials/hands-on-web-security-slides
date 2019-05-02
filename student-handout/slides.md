@@ -249,7 +249,7 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 * Create a web page that, when viewed, creates a new pet owned by whoever visits the page.
 * You may want to ***read the app code*** to find a view function that accepts GET as well as POST.
-* You can use [JSFiddle](https://jsfiddle.net/kta1uL3o/2/) for HTML hosting.
+* You can use [JSFiddle](https://jsfiddle.net/Lezp7350/) for HTML hosting.
 
 * Press '`s`' for hints.
 
