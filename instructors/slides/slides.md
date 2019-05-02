@@ -35,6 +35,9 @@ Note:
 
 ## Instructor: Jacinda Shelly
 
+* CTO / First Engineer at Doctor On Demand (Come see us at the expo!)
+* Mother to a 2.5 y/o
+
 Note:
 
 - My background
@@ -744,6 +747,8 @@ assert(response.status_code, 404)
 * Pin your dependencies; get fresh versions, and read the diff.
 * Turn on Github security vulnerabilities
 * pyup / requires.io
+
+---
 
 ---
 
