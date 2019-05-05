@@ -1,1 +1,9 @@
-This repository contains the lab material for the PyCon 2019 tutorial Web Application Security with Django. This tutorial is scheduled for Thursday, May 9, 2019.
+This repository contains the lab material for the PyCon 2019 tutorial Web Application Security with Django.
+
+This tutorial has been presented at PyCon 2015 and 2019, as well as DjangoCon 2018.
+
+The PyCon versions were recorded and the videos can be found here:
+
+PyCon 2019 with Jacinda Shelly: https://www.youtube.com/watch?v=8W4MGggwgfM
+
+PyCon 2015 with Asheesh Laroia, Jacky Chang, and Nicole Zuckerman: https://www.youtube.com/watch?v=f9XVNIeRxUo
