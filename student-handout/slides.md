@@ -1,6 +1,7 @@
 # Student handout
 
-### Web Application Security with Django, PyCon 2019
+### Web Application Security with Django
+#### PyCon 2019
 
 Navigate these slides by clicking the arrows at the bottom or use the 
 right / left arrows on your keyboard.
@@ -22,9 +23,12 @@ right / left arrows on your keyboard.
 
 ## Check your learning
 
-* If you are the first person to finish an attack, send a PM to Jacinda with a link 
-  to your work and the number from the slide heading. Once confirmed, announce in your group's channel that you've 
-  successfully exploited this vulnerability. 
+* If you are the first person in your group to finish an attack, send a PM to Jacinda
+ 
+  * Include a link to your work and the number from the slide heading.
+  
+  * Once confirmed, announce in your group's channel that you've successfully exploited this vulnerability. 
+
 * Other people in your group should now turn to you for verification of vulnerability completion. 
   
 ---
@@ -39,7 +43,7 @@ Reference: [The Recurse Center User's Manual](https://www.recurse.com/manual)
 
 ---
 
-## TL;DR. Be kind.
+## In other words
 
 
 [XKCD 1053 - Ten Thousand](https://xkcd.com/1053/)
@@ -60,7 +64,7 @@ Note:
 
 ---
 
-## Be social
+## Interact
 
 * Use your small group's Slack channel to share your attacks with your peers. They will enjoy
  clicking a link that does something completely surprising.
@@ -91,9 +95,9 @@ Besides showing
 
 and 
 
-`<section>sections</section>`, HTML also includes tags that cause 
-browsers take _actions_. If a site doesn't sanitize its inputs, but allows you to enter text that is treated as HTML 
-when the site software renders the page, then you can run or embed whatever JavaScript you wish.
+`<section>sections</section>`, HTML also includes tags that cause browsers to execute code. 
+If a site allows you to enter text that is treated as raw HTML, then you can run or embed 
+whatever JavaScript you wish.
 
 
 ---
@@ -113,8 +117,7 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 * Now click around the site. If you can see the text is _emphasized_, then make the page run some Javascript. 
   (Code example on the next slide)
 * You can stop when you've found one. (For extra credit, find more than one.)
-* **Check your learning**: Once you've done that, send a DM to Jacinda or someone on your team who's already 
-  solved this and send them your attack link!
+* **Check your learning**: Once you've done that, send a DM with an "attack" link to Jacinda or someone on your team!
 
 ---
 
@@ -122,13 +125,13 @@ When you can run JavaScript on a site that's not what the site owner expected, t
 ### Sample attack code
 
 - Sample JS: ```< script>alert(1);< /script>```
+  - (Note: remove the spaces. They're only there because otherwise it doesn't render.)
 - Feel free to Google [xss cheat sheet] for more.
 - Type '`s`' for more suggestions on attack code.
 
 Note:
-- Other fun things: `< img src=x onerror="alert(1);">`
+- Other fun things: `< img src=x onerror="alert(1);">` (remember to remove spaces)
 - (This works because `x` happens not to exist, so the IMG tag runs the `onerror` code.)
-- TODO: Someone could write an epic site-specific weaponized script. 
 - Small-group Q&A: Why can you cause JS execution in this one place, but not in all places? What sort of damage could the JavaScript have done?
 
 ---
