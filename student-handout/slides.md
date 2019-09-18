@@ -156,7 +156,7 @@ Note:
 - Take a look through the **urls.py** in the code if you can't find the admin site.
 - The username is admin. Take a wild guess at the password.
 - Small group Q&A: Can you think of other things in your life that might have default passwords? Feel free to have a
- longer conversation with your group about default passwords if you have more questions!
+ longer conversation with your group about default passwords.
 
 ---
 
@@ -166,7 +166,8 @@ Note:
 
 As a programmer, it's easy to forget to check if a user is authorized to POST to a given URL.
 
-You might take care to have an HTML form only appear for authorized users. Crafty users can use their browser's site inspector to change the URL a form will POST to.
+You might take care to have an HTML form only appear for authorized users. 
+Crafty users can use their browser's site inspector to change the URL a form will POST to.
 
 ---
 
@@ -175,7 +176,7 @@ You might take care to have an HTML form only appear for authorized users. Craft
 ### Your goal (#3)
 
 * Ask someone on Slack for a pet ID that isn't yours.
-* Find a way to modify that pet.
+* Find a way to modify that pet (that doesn't use the admin).
 
 * For more hints, press '`s`'
 
@@ -195,7 +196,7 @@ Note:
 ### Overview
 
 * Many web apps, behind the scenes, access data from a database by sending SQL queries to it.
-* e.g.: `DELETE from users WHERE user_id=3;`
+  * e.g.: `DELETE FROM users WHERE user_id=3;`
 * If `user_id` were controlled by the attacker, the attacker could change the query to be:
 ```DELETE FROM users WHERE user_id=user_id;``` and you'd lose all your user data.
 * SQL mappers like the Django ORM automatically escape parameters, so this might instead be:
@@ -207,41 +208,42 @@ Note:
 ### Your goal (#4)
 
 * Find a view function that uses raw SQL queries, rather than the Django ORM.
-* (**Read the source** for this!)
-* Use this to modify a _pet you did not create_!
+  * (**Read the source** for this unless you're a very advanced black box tester!)
+* Use this to modify a _pet you did not create_.
 * **Check your learning**: When you've done it, send a link to the pet page you updated to Jacinda or a team 
-member. They'll ask you _why_ your attack worked.
+member. Explain what you did and _why_ your attack worked.
 
 * Type '`s`' to see hints.
 
 Note:
 - Once you find the vulnerable view function, find the form in the site that submits to it.
 - If you own (e.g.) pet #5, go to its profile page, and notice that there's a form that POSTs to `/pets/update/5`
-- Change it to instead POST to `/pets/update/3--` (the `--` is important!)
+- Change it to instead POST to `/pets/update/3--` 
+  - The `--` is important. It indicates a comment in SQL akin to `#` in Python.
 - Submit. Hooray!
 - Think about why this worked. [Hint](http://docs.oracle.com/cd/B14117_01/server.101/b10759/sql_elements006.htm)
 
 ---
 
-## Cross site request forgery
+## Cross site request forgery (CSRF)
 
 ### Overview (1/2)
 
 If there is a URL that changes server-side state, and it can be accessed with a `GET` request, then it's easy to make people's browsers request that URL.
 
-One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
+One fun way is to make an `img` tag whose `src=` points to the URL in question.
 
 ---
 
-## Cross site request forgery
+## Cross site request forgery (CSRF)
 
 ### Overview (2/2)
 
-* If _victim.com_ has a CSRF vulnerability, then Alice can make a page on _evil.com_ that, through Bob merely 
-  visiting her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
-* The way cookies work is that they flow with every request Bob makes to _victim.com_.
-* An IMG tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_, or access Bob's 
-  data on _victim.com_ because Bob is logged in.
+* If _victim.com_ has a CSRF vulnerability, then Alice can make a page on _evil.com_ that, when Bob  
+  visits her _evil.com_ page, causes Bob to silently take some action on _victim.com_.
+* Cookies flow with every request Bob makes to _victim.com_.
+* An `img` tag on _evil.com_ could cause Bob's browser to try to find an image on _victim.com_, or access Bob's 
+  data on _victim.com_ if Bob is logged in.
 * So in this way, Alice causes Bob to silently take actions on another site (i.e. "cross site").
 
 ---
@@ -252,17 +254,19 @@ One fun way is to make an `IMG` tag whose `src=` points to the URL in question.
 
 * Create a web page that, when viewed, creates a new pet owned by whoever visits the page.
 * You may want to ***read the app code*** to find a view function that accepts GET as well as POST.
-* You can use [JSFiddle](https://jsfiddle.net/Lezp7350/) for HTML hosting.
+* You can use [JSFiddle](https://jsfiddle.net/3bd6wuy2/1/) for HTML hosting.
 
 * Press '`s`' for hints.
 
 * **Check your learning**: Send your JSFiddle link to your instructor or team members.
 
 Note:
-- To figure out exactly how to craft the GET URL, start by using _Inspect Element_ to modify the form so that it is `method=GET` on your own computer.
-- Since you will have to embed a pet name within the attack `IMG` tag, you may need to use the app's "delete all your pet data" before attacking someone else.
+- To figure out exactly how to craft the GET URL, start by right-clicking the submit button and using
+ _Inspect Element_ to modify the form so that it is `method=GET` on your own computer.
+- Since you will have to embed a pet name within the attack `IMG` tag, you may need to use the app's 
+  "delete all your pet data" before attacking someone else.
 - Don't forget a trailing slash! If you leave it off, you'll cause the server to redirect and it won't work.
-- Small group discussion: Ask the student, How did that work?
+- Small group discussion: How did that work?
 
 ---
 
@@ -272,7 +276,8 @@ Note:
 
 Did you know that `POST` requests can also happen from other sites?
 
-See [this StackOverflow question](http://stackoverflow.com/questions/17940811/example-of-silently-submitting-a-post-form-csrf) with advice on how to make it happen.
+See [this StackOverflow question](http://stackoverflow.com/questions/17940811/example-of-silently-submitting-a-post-form-csrf) 
+ with advice on how to make it happen.
 
 ---
 
@@ -291,7 +296,7 @@ Note:
 
 ---
 
-## Generate sessions as others
+## Generating sessions as other users
 
 ### Overview (1/4)
 
@@ -306,7 +311,7 @@ To achieve this, HTTP grew a feature called "Cookies."
 
 ---
 
-## Generate session data as others
+## Generating sessions as other users
 
 ### Overview (2/4)
 
@@ -320,7 +325,7 @@ represents the "session data" as a Python dict, e.g.: ```{'user_id': 3}```
 
 ---
 
-## Generate sessions as others
+## Generating sessions as other users
 
 ### Overview (3/4)
 
@@ -332,7 +337,7 @@ One is to use a `session ID` cookie; the cookie contains a random number. When t
 Another is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie! This way, the server receives the raw session data. No need to look it up in a database from session ID to session _data_.
 
 ---
-## Generate sessions as others
+## Generating sessions as other users
 
 ### Overview (4/4)
 
