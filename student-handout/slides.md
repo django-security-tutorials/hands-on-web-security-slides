@@ -331,21 +331,26 @@ represents the "session data" as a Python dict, e.g.: ```{'user_id': 3}```
 
 There are two common ways to use cookies to store session data.
 
-One is to use a `session ID` cookie; the cookie contains a random number. When the server processes a request, it checks
- what _session data_ is associated with the session ID, loads that into memory, and hands it to the view function.
+One is to use a `session ID` cookie; the cookie contains a random number. When the server processes a request, 
+it checks what _session data_ is associated with the session ID, loads that into memory, and hands it to the view 
+function.
 
-Another is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie! This way, the server receives the raw session data. No need to look it up in a database from session ID to session _data_.
+Another is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie!
+ This way, the server receives the raw session data. No need to look it up in a database from session ID to 
+ session _data_.
 
 ---
 ## Generating sessions as other users
 
 ### Overview (4/4)
 
-_However_, people's browsers can't really be trusted. So typically the session data is also _signed_ with a secret key. If the user tampers with the session data, the signature won't match.
+_However_, people's browsers can't really be trusted. So typically the session data is also _signed_ with a secret 
+key. If the user tampers with the session data, the signature won't match.
 
 Django calls this the `signed_cookies` session store. It uses the `SECRET_KEY` config variable to sign the data.
 
-For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.py`. So you can change your session data... for example, changing your `user_id` to someone else's!
+For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.py`. So you can change your
+ session data... for example, changing your `user_id` to someone else's!
 
 ---
 
@@ -379,7 +384,7 @@ Get the app running locally:
 ```
 git clone https://github.com/django-security-tutorials/pettwitter.git
 cd pettwitter
-# Below is one example of creating a virtualenv. There are others. Feel free to use those if you know how.
+# Below is one example of creating a virtualenv. There are others. Feel free to use those instead.
 virtualenv -p python3 PET # This may not be necessary if python3 is your system Python
 source PET/bin/activate
 pip install -r requirements.txt --no-use-pep517
@@ -415,6 +420,10 @@ Load the data as follows:
 * _auth_user_hash is constructed from the hashed value stored in the password field in the database
 * Now, where did we see that value again?
 
+Note:
+
+- If you're not sure where we saw that value, click around in the admin a bit...
+
 ---
 
 ### Implementation notes (5/5)
@@ -440,7 +449,7 @@ And extract something you can put into your browser:
 * Now let's transfer that cookie into your browser.
 * Open an _Incognito Window_ or _Private Window_, and visit your group's _pettwitter_ instance.
 * In the browser's Javascript console, do: ```document.cookie='sessionid=new:thing'```
-* Now reload the homepage -- are you logged in? As who?
+* Now reload the homepage -- are you logged in? As whom?
 
 ---
 
@@ -448,8 +457,8 @@ And extract something you can put into your browser:
 
 * You're probably thinking: "What idiot would override the UserAdmin like that?"
 * And you're partly right. This exploit was a _lot_ easier to accomplish prior to 1.7 when _auth_user_hash was added
-* BUT - dumps of user databases happen all the time, and now you understand more about why SECRET_KEY needs to remain 
-secret
+* BUT - dumps of user databases happen all the time, and if you also happened to have exposed your SECRET_KEY,
+ an attacker could login as any user if you're using signed cookies.
 
 ---
 
@@ -458,11 +467,14 @@ secret
 
 This app uses pickle! Look at the settings file.
 
-Pickle is a way to take Python data, like `{'key': ['val11', 'val2']}` and turn it into a file that can be loaded into Python later.
+Pickle is a way to take Python data, like `{'key': ['val11', 'val2']}` and turn it into a file that can be loaded into
+ Python later.
 
-Unfortunately, pickle is powerful: when loading data in from a pickle, Python will execute _code_ that the pickle file says to execute, not merely restore data.
+Unfortunately, pickle is powerful: when loading data in from a pickle, Pickle can cause Python to execute _code_ in
+ addition to restoring data!
 
-Since Django's `signed_cookie` session store uses pickle to serialize the session data, you can cause _arbitrary code_ to run on the server.
+Since Django's `signed_cookie` session store uses pickle to serialize the session data, you can cause
+ _arbitrary code_ to run on the server.
 
 ---
 
@@ -487,17 +499,20 @@ References:
 
 * On your computer, create a Python object that does `os.system('echo zomg')` in the `__reduce__` method
 * Pickle that thing on your own system.
-* Use `pickle.loads()` on your own system to verify that when you load the data, it executes the `echo zomg` shell command.
+* Use `pickle.loads()` on your own system to verify that when you load the data, it executes the `echo zomg`
+ shell command.
 * Now, turn the session data from earlier into a `UserDict` subclass with a custom `__reduce__` method.
 * Now that _should_ cause remote code execution on the server.
-* This has not been tested on Python 3 / Django 2.2 and is not guaranteed to work.
+* However, there are a lot of system-specific issues that could cause it to not work. Don't worry if it doesn't as
+ long as you understand what _could_ happen.
 
 ---
 
 ## Fix the issues
 ### Your goal (#8 / extra credit)
 
-* If you're done early, we recommend you try to _fix_ some of the security issues in the app.
+* If you're done early, I recommend you try to _fix_ some of the security issues in the app.
+  * Better yet, add tests _proving_ you fixed an issue!
 * To do that, first _fork_ [the project](https://github.com/django-security-tutorials/pettwitter) on GitHub, then 
 _clone_ the forked version to your computer.
 * To set up a local dev environment, see next slide.
@@ -524,10 +539,10 @@ python manage.py runserver
 
 All the following people helped with this tutorial:
 
+* Asheesh Laroia (original creator)
 * Jacky Chang
 * Drew Fisher
 * William Hakizimana
-* Asheesh Laroia
 * Andrew Pinkham
 * Karen Rustad
 * Jacinda Shelly
