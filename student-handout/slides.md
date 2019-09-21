@@ -209,6 +209,7 @@ Note:
     DELETE FROM users WHERE user_id=user_id;
    
 and you'd lose all your user data.
+
 * SQL mappers like the Django ORM automatically escape parameters, so this might instead be:
 
     DELETE from users WHERE user_id="user_id";
