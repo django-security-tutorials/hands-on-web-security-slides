@@ -543,7 +543,7 @@ References:
 * Now that _should_ cause remote code execution on the server.
 * Press `'s'` for a caveat.
 
-Notes:
+Note:
 - There are a lot of system-specific issues that could cause this to not work. Don't worry if it doesn't work as
  long as you understand what _could_ happen.
 
