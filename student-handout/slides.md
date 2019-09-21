@@ -309,7 +309,7 @@ Note:
 ---
 
 ## Generating sessions as other users
-### Overview (1/5)
+### Overview (1/7)
 
 HTTP is a "stateless" protocol, meaning each HTTP request is separate from other ones.
 
@@ -320,7 +320,7 @@ know that you've logged in, so it can customize the homepage just for you.
 ---
 
 ## Generating sessions as other users
-### Overview (2/5)
+### Overview (2/7)
 
 Since these requests are separate, there must be some way for the `/login/` page to store some information so
  that `/` can look at it -- it needs to store at least your user ID.
@@ -332,44 +332,54 @@ To achieve this, HTTP grew a feature called "Cookies."
 
 ## Generating sessions as other users
 
-### Overview (3/5)
+### Overview (3/7)
 
 Here's how cookies typically work:
 
 * When you log in at `/login/`, that page stores a "cookie" in your browser.
 * Then, when you make any follow-up requests, your browser sends that cookie to the server.
-
-The `/` page needs the _user ID_ in order to customize itself. It might need other data, too; typically, it 
+* The `/` page needs the _user ID_ in order to customize itself. It might need other data, too; typically, it 
 represents the "session data" as a Python dict, e.g.: ```{'user_id': 3}```
 
 ---
 
 ## Generating sessions as other users
-
-### Overview (4/5)
+### Overview (4/7)
 
 There are two common ways to use cookies to store session data.
 
 One is to use a `session ID` cookie; the cookie contains a random number. When the server processes a request, 
 it checks what _session data_ is associated with the session ID, loads that into memory, and hands it to the view 
 function.
+ 
+
+---
+
+## Generating sessions as other users
+### Overview (5/7)
 
 Another is to take the session data, e.g. `{'user_id': 3}`, turn that into text, and store the text in the cookie!
  This way, the server receives the raw session data. No need to look it up in a database from session ID to 
  session _data_.
+ 
 
 ---
 ## Generating sessions as other users
-
-### Overview (5/5)
+### Overview (6/7)
 
 _However_, people's browsers can't really be trusted. So typically the session data is also _signed_ with a secret 
 key. If the user tampers with the session data, the signature won't match.
 
 Django calls this the `signed_cookies` session store. It uses the `SECRET_KEY` config variable to sign the data.
 
+
+---
+## Generating sessions as other users
+### Overview (7/7)
+
 For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.py`. So you can change your
  session data... for example, changing your `user_id` to someone else's!
+ 
 
 ---
 
@@ -387,7 +397,7 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 ---
 
 
-### Implementation notes (1/5)
+### Implementation notes (1/6)
 
 * In your browser, open up the console, and type: ```document.cookie```
 * You'll see something like:
@@ -396,7 +406,7 @@ For this app, the _SECRET_KEY_ is just hanging out in `thesite/thesite/settings.
 
 ---
 
-### Implementation notes (2/5)
+### Implementation notes (2/6)
 
 Get the app running locally:
 
@@ -413,7 +423,7 @@ python thesite/manage.py shell
 
 ---
 
-### Implementation notes (3/5)
+### Implementation notes (3/6)
 
 Load the data as follows:
 
@@ -434,7 +444,7 @@ Load the data as follows:
 
 ---
 
-### Implementation notes (4/5)
+### Implementation notes (4/6)
 
 * _auth_user_hash is constructed from the hashed value stored in the password field in the database
 * Now, where did we see that value again?
@@ -445,7 +455,7 @@ Note:
 
 ---
 
-### Implementation notes (5/5)
+### Implementation notes (5/6)
 
 Now, modify the data:
 
@@ -465,9 +475,12 @@ And extract something you can put into your browser:
 'new:thing'
 ```
 
+---
+### Implementation notes (6/6)
+
 * Now let's transfer that cookie into your browser.
 * Open an _Incognito Window_ or _Private Window_, and visit your group's _pettwitter_ instance.
-* In the browser's Javascript console, do: ```document.cookie='sessionid=new:thing'```
+* In the browser's Javascript console, input: ```document.cookie='sessionid=new:thing'```
 * Now reload the homepage -- are you logged in? As whom?
 
 ---
@@ -492,7 +505,7 @@ Pickle is a way to take Python data, like `{'key': ['val11', 'val2']}` and turn 
 Unfortunately, pickle is powerful: when loading data in from a pickle, Pickle can cause Python to execute _code_ in
  addition to restoring data!
 
-Since Django's `signed_cookie` session store uses pickle to serialize the session data, you can cause
+Django's `signed_cookie` session store uses pickle to serialize the session data, so you can cause
  _arbitrary code_ to run on the server.
 
 ---
@@ -508,21 +521,24 @@ Implementation hints on the next slide.
 
 References:
 
-* http://www.balda.ch/posts/2013/Jun/23/python-web-frameworks-pickle/
-* https://github.com/django/django/blob/master/django/contrib/sessions/backends/signed_cookies.py
+* [Balda's Place](http://www.balda.ch/posts/2013/Jun/23/python-web-frameworks-pickle/)
+* [Django Source Code](https://github.com/django/django/blob/stable/2.2.x/django/contrib/sessions/backends/signed_cookies.py)
 
 ---
 
 ## Abuse pickle storage
 ### Implementation hints
 
-* On your computer, create a Python object that does `os.system('echo zomg')` in the `__reduce__` method
+* On your computer, create a Python object that executes `os.system('echo zomg')` in the `__reduce__` method
 * Pickle that thing on your own system.
 * Use `pickle.loads()` on your own system to verify that when you load the data, it executes the `echo zomg`
  shell command.
 * Now, turn the session data from earlier into a `UserDict` subclass with a custom `__reduce__` method.
 * Now that _should_ cause remote code execution on the server.
-* However, there are a lot of system-specific issues that could cause it to not work. Don't worry if it doesn't as
+* Press `'s'` for a caveat.
+
+Notes:
+- There are a lot of system-specific issues that could cause this to not work. Don't worry if it doesn't work as
  long as you understand what _could_ happen.
 
 ---
