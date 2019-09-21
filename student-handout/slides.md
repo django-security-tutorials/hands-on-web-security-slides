@@ -193,14 +193,27 @@ Note:
 ---
 
 ## SQL Injection
-### Overview
+### Overview (1/2)
 
 * Many web apps, behind the scenes, access data from a database by sending SQL queries to it.
-  * e.g.: `DELETE FROM users WHERE user_id=3;`
+
+  * e.g.: ```DELETE FROM users WHERE user_id=3;```
+
+---
+
+## SQL Injection
+### Overview (2/2)
+
 * If `user_id` were controlled by the attacker, the attacker could change the query to be:
-```DELETE FROM users WHERE user_id=user_id;``` and you'd lose all your user data.
+
+   ```DELETE FROM users WHERE user_id=user_id;``` 
+   
+and you'd lose all your user data.
 * SQL mappers like the Django ORM automatically escape parameters, so this might instead be:
-```DELETE from users WHERE user_id="user_id";```which would delete nothing.
+
+    ```DELETE from users WHERE user_id="user_id";```
+    
+    which would delete nothing.
 
 ---
 
