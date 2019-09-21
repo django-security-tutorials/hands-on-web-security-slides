@@ -308,19 +308,26 @@ See [this StackOverflow question](http://stackoverflow.com/questions/17940811/ex
 
 Note:
 - Use JSFiddle again for hosting.
-- It's fine if you skip this exercise.
+- It's fine if you skip this exercise or come back to it later.
 
 ---
 
 ## Generating sessions as other users
-
-### Overview (1/4)
+### Overview (1/5)
 
 HTTP is a "stateless" protocol, meaning each HTTP request is separate from other ones.
 
-So let's say you log in at `/login/` and visit the home page (`/`) of a website. The homepage ought to know that you've logged in, so it can customize the homepage just for you.
+So let's say you log in at `/login/` and visit the home page (`/`) of a website. The homepage ought to 
+know that you've logged in, so it can customize the homepage just for you.
 
-Since these requests are separate, there must be some way for the `/login/` page to store some information so that `/` can look at it -- it needs to store at least your user ID.
+
+---
+
+## Generating sessions as other users
+### Overview (2/5)
+
+Since these requests are separate, there must be some way for the `/login/` page to store some information so
+ that `/` can look at it -- it needs to store at least your user ID.
 
 To achieve this, HTTP grew a feature called "Cookies."
 
@@ -329,7 +336,7 @@ To achieve this, HTTP grew a feature called "Cookies."
 
 ## Generating sessions as other users
 
-### Overview (2/4)
+### Overview (3/5)
 
 Here's how cookies typically work:
 
@@ -343,7 +350,7 @@ represents the "session data" as a Python dict, e.g.: ```{'user_id': 3}```
 
 ## Generating sessions as other users
 
-### Overview (3/4)
+### Overview (4/5)
 
 There are two common ways to use cookies to store session data.
 
@@ -358,7 +365,7 @@ Another is to take the session data, e.g. `{'user_id': 3}`, turn that into text,
 ---
 ## Generating sessions as other users
 
-### Overview (4/4)
+### Overview (5/5)
 
 _However_, people's browsers can't really be trusted. So typically the session data is also _signed_ with a secret 
 key. If the user tampers with the session data, the signature won't match.
