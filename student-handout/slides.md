@@ -205,14 +205,20 @@ Note:
 ### Overview (2/2)
 
 * If `user_id` were controlled by the attacker, the attacker could change the query to be:
+
+    ```
     DELETE FROM users WHERE user_id=user_id;
+    ```
    
 
 and you'd lose all your user data.
 
 * SQL mappers like the Django ORM automatically escape parameters, which would produce something like this 
  (and doesn't delete anything):
+ 
+    ```
     DELETE from users WHERE user_id="user_id";
+    ```
     
 ---
 
