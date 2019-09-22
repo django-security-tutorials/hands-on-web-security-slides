@@ -31,15 +31,13 @@ Note:
 
 ---
 
-# About Me
-
 ## Instructor: Jacinda Shelly
 
 * Co-Founder of Apero Health (Modern Medical Billing)
 * Former CTO / First Engineer at Doctor On Demand
 * Mother to a 3 y/o
 
-<img src="https://pettwitter-docs.herokuapp.com/static/images/IMG_9232.jpg">
+<img src="https://pettwitter-docs.herokuapp.com/static/images/IMG_9232.jpg" width="300px">
 
 Note:
 
