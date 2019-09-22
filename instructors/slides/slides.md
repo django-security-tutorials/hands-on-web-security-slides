@@ -1,5 +1,5 @@
 
-# Web Application Security with Django
+## Web Application Security with Django
 
 ### DjangoCon 2019
 
@@ -39,7 +39,7 @@ Note:
 * Former CTO / First Engineer at Doctor On Demand
 * Mother to a 3 y/o
 
-<img src="https://pettwitter-docs.herokuapp.com/static/images/IMG_9232.heic">
+<img src="https://pettwitter-docs.herokuapp.com/static/images/IMG_9232.jpg">
 
 Note:
 
@@ -70,7 +70,7 @@ think some people focus on these too much
 
 ---
 
-# Order of Operations
+## Order of Operations
 
 - Lecture: Example attacks
 - Exercise: Google Dorking
