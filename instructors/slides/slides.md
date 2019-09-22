@@ -751,10 +751,10 @@ Note:
 
 ---
 
-## SQL injection
+## SQL injection (#4)
 
 * Don't use raw SQL.
-* Use an ORM (sqlalchemy, Django ORM).
+* Use an ORM (Django ORM or SQLAlchemy).
 * If you must, use parameterized queries.
 * Read _all_ the ORM documentation before you think you must.
 
