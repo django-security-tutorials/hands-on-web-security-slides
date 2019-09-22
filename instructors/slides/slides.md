@@ -1,7 +1,7 @@
 
 # Web Application Security with Django
 
-### PyCon 2019
+### DjangoCon 2019
 
 ### Jacinda Shelly
 
@@ -10,24 +10,24 @@
 ## The history of this tutorial
 
 
-* PyCon 2015 - Getting Comfy with Web Security
+* PyCon 2015 - "Delving Into the Django Admin"
 
-* A random email
+* A random email - "Getting Comfy with Web Security"
 
-* A chance meetup last year
+* A chance meetup
 
-* A tutorial proposal for DjangoCon 2018
+* A tutorial proposal for DjangoCon 2018, and PyCon 2019, and DjangoCon 2019
 
-* Many, many updates
+* Many, many updates (Django 1.4 -> Django 2.1/2!)
 
 Note:
 
 - I was giving a Django admin tutorial at PyCon 2015 and Asheesh emailed me asking if I would be interested in TA-ing
  for his tutorial (which was the next day).  I didn't have anything else going on and thought it would be cool, so 
  said sure!
-- Met him earlier this year, talked about how I loved the tutorial but it was out-of-date
-- He suggested I update it, I proposed that; proposal accepted
-- Upgrading from Django 1.4 to 2.1 took a lot; two of the vulnerabilities are a lot trickier to make happen!
+- Met him at an event, talked about how I loved the tutorial but it was out-of-date
+- He suggested I update it
+- Upgrading from Django 1.4 to 2.2 took a lot; two of the vulnerabilities are a lot trickier to make happen!
 
 ---
 
@@ -35,8 +35,11 @@ Note:
 
 ## Instructor: Jacinda Shelly
 
-* CTO / First Engineer at Doctor On Demand (Come see us at the expo!)
-* Mother to a 2.5 y/o
+* Co-Founder of Apero Health (Modern Medical Billing)
+* Former CTO / First Engineer at Doctor On Demand
+* Mother to a 3 y/o
+
+<img src="https://pettwitter-docs.herokuapp.com/static/images/IMG_9232.heic">
 
 Note:
 
@@ -44,24 +47,26 @@ Note:
 - CTO / First engineer at Doctor On Demand
 - Prior to that worked at a small defense contractor 
 - Also have some academic credentials in this area, but they're old (MIT crypto and security class)
-- It IS useful to understand the difference between signing and encrypting something, how handshakes work, etc. I 
-think some people focus on these too much
-- Talk about James Mickens (next slide)
 
 ---
+
+## What this Tutorial is Not
 
 > Sometimes, when I check my work email, I’ll find a message that says
 “Talk Announcement: Vertex-based Elliptic Cryptography on N-way
 Bojangle Spaces.”
 
 
-- "This World of Ours" - James Mickens
 - http://scholar.harvard.edu/files/mickens/files/thisworldofours.pdf
 
 Note:
 
 - Emphasize that this is not what this tutorial is about. It is about practical applications of security 
 vulnerabilities and hands-on practice.
+- It IS useful to understand the difference between signing and encrypting something, how handshakes work, etc. I 
+think some people focus on these too much
+- Talk about James Mickens (next slide)
+- "This World of Ours" - James Mickens
 
 ---
 
