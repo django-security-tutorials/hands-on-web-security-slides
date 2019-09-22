@@ -109,6 +109,12 @@ Note:
     - How Django does security out of the box
 - Go around the room, introduce yourselves
 - Any questions before we dive in?
+
+
+---
+
+# A Sampling of Attacks
+
 ---
 
 # TweetDeck (XSS)
@@ -121,6 +127,8 @@ Note:
 
 ---
 
+## Raw Tweet: 2014
+
 <img src="http://i.guim.co.uk/static/w-700/h--/q-95/sys-images/Guardian/Pix/pictures/2014/6/12/1402572144093/a46e0094-c865-47ea-b987-26bb9f3afaa9-620x372.png">
 
 Note:
@@ -128,6 +136,8 @@ Note:
 - This was the raw tweet
 
 ---
+
+## How it Rendered
 
 <img src="http://i.guim.co.uk/static/w-700/h--/q-95/sys-images/Guardian/Pix/pictures/2014/6/12/1402572144093/a46e0094-c865-47ea-b987-26bb9f3afaa9-620x372.png">
 
@@ -137,6 +147,8 @@ Note:
 - And this was how Tweetdeck rendered it
 
 ---
+
+## Soon
 
 <blockquote class="twitter-tweet" lang="en"><p>&lt;script class=&quot;xss&quot;&gt;
 $(&#39;.xss&#39;).parents().eq(1).find(&#39;a&#39;).eq(1).click();
@@ -150,9 +162,13 @@ Note:
 
 ---
 
+## Unplanned Downtime
+
 <blockquote class="twitter-tweet" lang="en"><p>We&#39;ve temporarily taken TweetDeck services down to assess today&#39;s earlier security issue. We&#39;ll update when services are back up.</p>&mdash; TweetDeck (@TweetDeck) <a href="https://twitter.com/TweetDeck/status/476770732987252736">June 11, 2014</a></blockquote>
 
 ---
+
+## So...what happened?
 
 <blockquote class="twitter-tweet" lang="en"><p>&lt;script class=&quot;xss&quot;&gt;
 $(&#39;.xss&#39;).parents().eq(1).find(&#39;a&#39;).eq(1).click();
@@ -222,18 +238,19 @@ Note:
 - Delete all a user's tweets
 
 ---
+# XSS
+
+### Any Questions?
+
+---
 
 ## A hacked talk
 
 ### Asheesh Laroia & Karen Rustad
 
 Note:
-- Asheesh was talking at PyCon 2014 about setting up a server and used Nate Aune's version of the Django polls tutorial
-- Found Nate Aune's version of the Django polls tutorial, and loaded it up.
-- At this point, I said, people should start voting! Which is better -- Chewbacca or Caffeine?
-- But then I noticed there was a new entry in the list, labeled lol.
-- (20:32 is when I got pwned, for screencap purposes.)
-- Here's what happened
+- Asheesh was talking at PyCon 2014 about setting up a server 
+- Used Nate Aune's version of the Django polls tutorial (on Github)
 
 ---
 
@@ -260,10 +277,13 @@ So then it was crystal clear. My "friend" must have decided to go to the admin s
 
 ---
 
+## So...what happened?
+
 <img src="http://www.mit.edu/~asheesh/sec-talk/github-polls-app.png">
 
 
 ---
+## Default password...
 
 <img src="http://www.mit.edu/~asheesh/sec-talk/github-polls-app-password.png">
 
@@ -275,9 +295,6 @@ Note:
 sites. 
 - As we go through the rest of these examples, remember that there is a test at the end -- you're going to 
 actually have to use these attacks against some sample sites.
-
-
----
 
 
 ---
