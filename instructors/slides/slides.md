@@ -558,7 +558,7 @@ Note:
 
 ---
 
-## Cross-site scripting
+## Cross-site scripting (XSS - #1)
 
 ```
 <p>{{ pet.description|safe }}</p>
@@ -566,7 +566,7 @@ Note:
 
 ---
 
-## Cross-site scripting
+## Cross-site scripting (XSS - #1)
 
 ```
 <p>{{ pet.description|safe }}</p>
@@ -580,12 +580,22 @@ vs
 
 ---
 
-## Cross-site scripting
+## Cross-site scripting (XSS - #1)
 
-* Theory: Escape content in a context-appropriate way
-* Practice: This is really, really hard to get right. Like crypto, use good tools.
+* In Theory: Escape content in a context-appropriate way
+* In Practice: This is really, really hard to get right. Like crypto, use good tools.
     * Django templates
-    * bleach
+    * Bleach (https://bleach.readthedocs.io/en/latest/)
+
+```
+>>> import bleach
+
+>>> bleach.clean('an <script>evil()</script> example')
+u'an &lt;script&gt;evil()&lt;/script&gt; example'
+
+>>> bleach.linkify('an http://example.com url')
+u'an <a href="http://example.com" rel="nofollow">http://example.com</a> url
+```
 
 ---
 
