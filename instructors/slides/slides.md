@@ -52,12 +52,13 @@ Note:
 
 ## What this Tutorial is Not
 
+
 > Sometimes, when I check my work email, I’ll find a message that says
 “Talk Announcement: Vertex-based Elliptic Cryptography on N-way
 Bojangle Spaces.”
 
 
-Ref: http://scholar.harvard.edu/files/mickens/files/thisworldofours.pdf
+http://scholar.harvard.edu/files/mickens/files/thisworldofours.pdf
 
 Note:
 
@@ -65,7 +66,7 @@ Note:
 vulnerabilities and hands-on practice.
 - It IS useful to understand the difference between signing and encrypting something, how handshakes work, etc. I 
 think some people focus on these too much
-- Talk about James Mickens (next slide)
+- Talk about James Mickens
 - "This World of Ours" - James Mickens
 
 ---
@@ -76,13 +77,14 @@ think some people focus on these too much
 - Exercise: Google Dorking
 - Group discussion: What are we trying to protect?
 - Lab time (Part 1)
+<hr>
 - Break (30 minutes)
 - Lab time (Part 2)
 - Wrap-up lecture (~30 minutes)
 
 Note:
 
-- The point of the first hour is getting you into a security mindset.
+- The point of the first few exercises is getting you into a security mindset.
 - We'll start that with a half hour lecture about different web security topics and some example attacks.
  We'll cover cross-site scripting, cross-site request forgery, etc. 
  We'll discuss specific examples of web apps that were attacked, starting with a Django tutorial example.
