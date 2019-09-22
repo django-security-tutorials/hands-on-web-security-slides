@@ -600,10 +600,23 @@ vs
 
 ---
 
-## Defaults (not just passwords)
+## Defaults (not just passwords - #2)
+
+What dangerous defaults do we have in our lives?
+
+---
+
+## Aside: Securing the Django Admin
 
 * Change the default admin URL
-* 2FA (Two-factor authentication)
+* 2FA (Two-factor authentication) - django-two-factor-auth PyPi package
+* Name the Admin Site
+* Run `python manage.py check --deploy`
+* Use [Sasha's Pony Checkup](https://www.ponycheckup.com)
+
+[5 Ways to Make Django Admin Safer](https://hakibenita.com/5-ways-to-make-django-admin-safer)
+
+[10 Tips for Making the Django Admin More Secure](https://opensource.com/article/18/1/10-tips-making-django-admin-more-secure)
 
 Note:
 - Obscurity should never be your only line of defense, but you also don't need to make it easy for attackers.  That
