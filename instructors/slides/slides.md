@@ -609,8 +609,9 @@ What dangerous defaults do we have in our lives?
 * Change the default admin URL
 * 2FA (Two-factor authentication) - django-two-factor-auth PyPi package
 * Name the Admin Site
-* Run `python manage.py check --deploy`
-* Use [Sasha's Pony Checkup](https://www.ponycheckup.com)
+* General tools, but have some admin-specific tips
+  * Run `python manage.py check --deploy`
+  * Use [Sasha's Pony Checkup](https://www.ponycheckup.com)
 
 <hr>
 
@@ -870,6 +871,7 @@ assert(response.status_code, 403)
 ## Resources (Django Documentation and Related)
 
 - https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+  - Run `python thesite/manage.py check --deploy`
 - https://docs.djangoproject.com/en/2.2/topics/security/
 - https://www.ponycheckup.com
 
