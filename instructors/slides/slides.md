@@ -57,7 +57,7 @@ Note:
 Bojangle Spaces.”
 
 
-- http://scholar.harvard.edu/files/mickens/files/thisworldofours.pdf
+Ref: http://scholar.harvard.edu/files/mickens/files/thisworldofours.pdf
 
 Note:
 
