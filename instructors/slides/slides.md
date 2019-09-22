@@ -612,6 +612,8 @@ What dangerous defaults do we have in our lives?
 * Run `python manage.py check --deploy`
 * Use [Sasha's Pony Checkup](https://www.ponycheckup.com)
 
+<hr>
+
 ### References:
  - [5 Ways to Make Django Admin Safer](https://hakibenita.com/5-ways-to-make-django-admin-safer)
  - [10 Tips for Making the Django Admin More Secure](https://opensource.com/article/18/1/10-tips-making-django-admin-more-secure)
