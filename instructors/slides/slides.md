@@ -664,22 +664,43 @@ Note:
 
 ---
 
-## Authorization checking
+## Authorization checking (#3)
 
 * `@login_required ` not enough
 * `Model.objects.filter(user=request.user)`
 
 ---
 
-## Authorization checking
+## Authorization checking (#3)
 
 * `@login_required ` not enough
 * `Model.objects.filter(user=request.user)`
 * `Model.objects.for_user(request.user)`
 
-Note:
+---
 
-- Grab some other decorators to share
+## Authorization checking (#3)
+
+* `@login_required ` not enough
+* `Model.objects.filter(user=request.user)`
+* `Model.objects.for_user(request.user)`
+* `@user_passes_test(email_check)`
+
+---
+
+## Authorization checking (#3)
+
+* `@login_required ` not enough
+* `Model.objects.filter(user=request.user)`
+* `Model.objects.for_user(request.user)`
+* `@user_passes_test(email_check)`
+* `@permission_required('polls.can_vote')`
+---
+
+## Authorization checking (#3)
+
+https://docs.djangoproject.com/en/2.2/topics/auth/default/
+https://docs.djangoproject.com/en/2.2/topics/auth/customizing/
 
 ---
 
