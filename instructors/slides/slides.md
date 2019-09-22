@@ -591,7 +591,7 @@ vs
     <code>
     >>> import bleach
     
-    >>> bleach.clean('an <script>evil()</script> example')
+    >>> bleach.clean('an <script >evil()< /script> example')
     u'an &lt;script&gt;evil()&lt;/script&gt; example'
     
     >>> bleach.linkify('an http://example.com url')
@@ -624,7 +624,7 @@ Note:
 
 ---
 
-## Authorization checking
+## Authorization checking (#3)
 
 ```
 # If the user is not logged in, reject the request.
@@ -638,7 +638,7 @@ pet = get_object_or_404(Pet, pk=pet_id)
 
 ---
 
-## Authorization checking
+## Authorization checking (#3)
 
 ```
 # If they're trying to update a non-existent pet, reject the
@@ -648,7 +648,7 @@ pet = get_object_or_404(Pet, pk=pet_id)
 
 ---
 
-## Authorization checking
+## Authorization checking (#3)
 
 ```
 # If they're trying to update a non-existent pet, or a pet they
@@ -657,7 +657,10 @@ pet = get_object_or_404(Pet, pk=pet_id,
                         user=request.user)
 ```
 
-- Question: 403 vs 404?
+- Aside: 403 vs 404?
+
+Note:
+- Principal of least information
 
 ---
 
