@@ -704,7 +704,7 @@ https://docs.djangoproject.com/en/2.2/topics/auth/customizing/
 
 ---
 
-## SQL injection
+## SQL injection (#4)
 
 ```
 sql_query = '''SELECT * from communication_app_pet WHERE id=%s
@@ -716,7 +716,7 @@ AND user_id=%d''' % (
 
 ---
 
-## SQL injection
+## SQL injection (#4)
 
 ```
 sql_query = '''SELECT * from communication_app_pet WHERE id=%s
@@ -737,19 +737,17 @@ query.execute(sql_query, pet_id, request.user.pk)
 
 ---
 
-<img width="400" src="http://www.mit.edu/~asheesh/sec-talk/select.png" style="border: none;">
-
-```
-sql_query = '''SELECT * from communication_app_pet WHERE id=?
-AND user_id=?'''
-
-query.execute(sql_query, pet_id, request.user.pk)
-```
----
-
 ## Just use the ORM
 
 - pets = Pet.object.filter(pet=pet_id, user=request.user)
+
+Many recent improvements in the Django ORM make it extremely rare to need raw SQL.
+
+If you don't believe me, you need to sneak into this afternoon's tutorial with James Bennett.
+
+Note:
+- Personal experience working at Doctor On Demand - millions of patient visits, can count on one hand the 
+ places where we used raw SQL.
 
 ---
 
