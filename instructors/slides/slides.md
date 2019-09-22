@@ -588,7 +588,6 @@ vs
     * Bleach (https://bleach.readthedocs.io/en/latest/)
 
 
-    <code>
     >>> import bleach
     
     >>> bleach.clean('an <script >evil()< /script> example')
@@ -596,7 +595,6 @@ vs
     
     >>> bleach.linkify('an http://example.com url')
     u'an <a href="http://example.com" rel="nofollow">http://example.com</a> url
-    </code>
 
 ---
 
