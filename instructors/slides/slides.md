@@ -79,7 +79,7 @@ think some people focus on these too much
 - Break (30 minutes)
 <hr>
 - Lab time (Part 2)
-- Wrap-up lecture (~30 minutes)
+- Lab Review (~30 minutes)
 
 Note:
 
@@ -296,18 +296,22 @@ sites.
 - As we go through the rest of these examples, remember that there is a test at the end -- you're going to 
 actually have to use these attacks against some sample sites.
 
+---
+# Improper Authorization
+
+### Any Questions?
 
 ---
 
 # Why allowing GET to alter state can get you in trouble (CSRF)
 
 ---
+## Google Web Accelerator
 
 <img src="https://img.utdstc.com/screen/1/google-web-accelerator-001.jpg">
 
 Note:
 
-- Talk about what Google accelerator was
 - IE / Firefox Extension
 - Clicked on all the links in your search results ahead of time
 - 2005 - 2008
@@ -328,15 +332,15 @@ Note:
 
 GET /user/1/delete
 
-<img src="https://signalvnoise.com/images/newbp-users.png">
+<img src="https://signalvnoise.com/images/newbp-users.png" width="300">
 
 ---
 
 GET /user/1/delete
 
-<img src="https://signalvnoise.com/images/newbp-users.png">
+<img src="https://signalvnoise.com/images/newbp-users.png" width="300">
 
-GET modifying server state is an easy opening for cross-site request forgery.
+GET modifying server state is an easy opening for CSRF attacks
 
 ---
 ## CSRF
@@ -344,6 +348,7 @@ GET modifying server state is an easy opening for cross-site request forgery.
 Can you submit information as an authenticated user from a different domain?
 
 Note:
+- One of the less well-understood exploits - key question on slide
 - Any questions on CSRF?
 - We'll go through a POST-based scenario and how Django protects against this in the practical and review later.
 
@@ -421,8 +426,7 @@ GET /?action=moinexec&c=rm%20-rf%20/
 
 ---
 
-## Remote code execution
-## Vulnerable Dependencies
+## Vulnerable Dependencies / Improper Authorization Checks
 
 ### Questions?
 
