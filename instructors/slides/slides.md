@@ -760,41 +760,41 @@ Note:
 
 ---
 
-## Secure by default
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/csrf_cookie.png">
-
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/csrf_cookie_bad_form.png">
-
----
-
-## Cross-site request forgery
-
-* POST to change data, and
-
----
-
-## Cross-site request forgery
+## Cross-site request forgery (#5)
 
 * POST to change data, and something that only a user _on that site_ can have
 * Django: `{%  csrf_token %}`
+
+Note:
+
+- The way cookies work, you need to be on the correct domain to access
+
 ---
 
-## Session data stealing
+## Secure by default
+
+* Had to actively disable certain settings to get this attack to work
+* `SESSION_COOKIE_SAMESITE = None` vs `SESSION_COOKIE_SAMESITE = 'Lax'` (Default)
+
+https://docs.djangoproject.com/en/2.2/ref/settings/#session-cookie-samesite
+
+---
+
+## Session data stealing (#6)
 
 ```
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '...'
 ```
 
+Note:
+
+- Sensitive settings should never be in the codebase!
+- Even if your repo never gets compromised externally, what about ex-employees?
+
 ---
 
-### Session data stealing
+### Session data stealing (#6)
 
 
 ```
@@ -807,27 +807,9 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 ---
 
-## Session data stealing
+## Session data stealing (#6)
 
 * Keep secrets secret.
-* Don't use pickle if you can help it. If you do, keep it firewalled.
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/gaynor-deli-1.png">
-
----
-
-<img src="http://www.mit.edu/~asheesh/sec-talk/gaynor-deli-2.png">
-
----
-## Session stealing
-
-```
-document.cookie
-```
-- [SESSION_COOKIE_SAMESITE](https://docs.djangoproject.com/en/2.2/ref/settings/#session-cookie-samesite)
-- https://docs.djangoproject.com/en/2.2/ref/settings/#session-cookie-samesite
 
 ---
 
@@ -837,13 +819,32 @@ document.cookie
 
 ---
 
+## Code injection (#7)
+
+Don't use Pickle unless there is a *very* good reason JSON et. al. won't work.
+
+If you must use Pickle, keep it firewalled.
+
+Are you *sure* you need Pickle?
+
+---
+
+## Vulnerable dependencies
+
+* Libraries run with full privilege
+* Only use trusted sources
+* Get fresh versions, and read the diff
+* Turn on Github security warnings for your private repositories
+* pyup / requires.io
+
+Note:
+- Github will automatically generate pull requests for libraries that have security vulnerabilities
+
+---
 
 ## Testing
 
-```
-# Positive assertions
-assert(response.status_code, 200)
-```
+There's clearly no testing in this app. This isn't a talk on testing, but *DO* test for security.
 
 Note:
 
@@ -860,46 +861,37 @@ Note:
 assert(response.status_code, 200)
 
 # Negative assertions
-assert(response.status_code, 404)
+assert(response.status_code, 403)
 ```
 
----
-## Vulnerable dependencies
-
-* Libraries run with full privilege.
-* Only use trusted sources
-* Pin your dependencies; get fresh versions, and read the diff.
-* Turn on Github security vulnerabilities
-* pyup / requires.io
 
 ---
 
+## Resources (Django Documentation and Related)
+
+- https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+- https://docs.djangoproject.com/en/2.2/topics/security/
+- https://www.ponycheckup.com
+
 ---
+## Resources (General)
 
-## Resources
-
-* The Tangled Web by Michael Zalewski
 * Open Web App Security Project (e.g. OWASP Top 10)
-* Django security docs
 * `security` email lists everywhere
 * Security Now and other security related podcasts
 * Anything (talk, paper, etc. by James Mickens): https://mickens.seas.harvard.edu/wisdom-james-mickens
 * [Black Hat Python Book](https://www.amazon.com/Black-Hat-Python-Programming-Pentesters/dp/1593275900/)
+* The Tangled Web by Michael Zalewski
 
 Note:
 - What are other people's favorite resources?
 
 ---
 
-## Django Deployment Checklist
-
-- https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
----
-
-## Things you can run yourself
+## Things you can run against yourself
 
 - Github security vulnerabilities
+- Pony Checkup
 - Metasploit
 - Google Dorking
 - Nmap
@@ -908,7 +900,9 @@ Note:
 
 ---
 
-# https://github.com/django-security-tutorials/
+# The Code!
+
+## https://github.com/django-security-tutorials/
 
 ---
 
@@ -916,10 +910,10 @@ Note:
 
 All the following people helped with this tutorial:
 
+* Asheesh Laroia (Original Creator)
 * Jacky Chang
 * Drew Fisher
 * William Hakizimana
-* Asheesh Laroia
 * Andrew Pinkham
 * Karen Rustad
 * Jacinda Shelly
