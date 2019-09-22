@@ -77,6 +77,7 @@ think some people focus on these too much
 - Lab time (Part 1)
 <hr>
 - Break (30 minutes)
+<hr>
 - Lab time (Part 2)
 - Wrap-up lecture (~30 minutes)
 
@@ -92,21 +93,22 @@ Note:
 
 ---
 
-# Getting to know you
+## Getting to know you
+
+## Average Self-Ratings
+
+### *Web Security:* 2.6
+### *Python:* 3.2
+### *Django:* 2.7
 
 Note:
 
-- I'd like to try to get a sense of what people's background and interests are.
-- Of those, that answered the pre-tutorial quiz, here were some common themes:
-    - Things to try against a website
-    - Security in production
-    - Best practices
-- Can I get three people to volunteer to talk about why you picked this tutorial to attend?
-- With that, we'll begin talking about these attacks.
+- Common things people were looking for:
+    - Basic websecurity practices
+    - Learn how to secure a Django webapp
+    - How Django does security out of the box
+- Go around the room, introduce yourselves
 - Any questions before we dive in?
-- Most of the examples are unchanged from Asheesh's tutorial in 2015. The bulk of my work was in updating the actual 
-  interactive app. The graphics / design may look dated, but the attacks are still relevant.
-
 ---
 
 # TweetDeck (XSS)
