@@ -97,9 +97,9 @@ Note:
 
 ## Average Self-Ratings
 
-### *Web Security:* 2.6
-### *Python:* 3.2
-### *Django:* 2.7
+### **Web Security:** 2.6
+### **Python:** 3.2
+### **Django:** 2.7
 
 Note:
 
