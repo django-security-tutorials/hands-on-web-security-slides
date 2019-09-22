@@ -303,20 +303,24 @@ actually have to use these attacks against some sample sites.
 
 ---
 
-<img src="http://www.indirvip.com/wp-content/uploads/2013/08/Google-Web-Accelerator-Resimleri2.png">
+<img src="https://img.utdstc.com/screen/1/google-web-accelerator-001.jpg">
 
 Note:
 
 - Talk about what Google accelerator was
+- IE / Firefox Extension
 - Clicked on all the links in your search results ahead of time
+- 2005 - 2008
 
 ---
+
+## Basecamp Settings
 
 <img src="https://signalvnoise.com/images/newbp-users.png">
 
 Note:
 
-- Popular web-based project management app called Basecamp
+- Popular web-based project management app called Basecamp (by 37Signals)
 - Side note: they created RoR, so building on their work
 - What do you think that trash can does when you click on it?
 
@@ -332,17 +336,31 @@ GET /user/1/delete
 
 <img src="https://signalvnoise.com/images/newbp-users.png">
 
-Opening for cross-site request forgery
+GET modifying server state is an easy opening for cross-site request forgery.
 
 ---
-## Directory Traversal
+## CSRF
+
+Can you submit information as an authenticated user from a different domain?
+
+Note:
+- Any questions on CSRF?
+- We'll go through a POST-based scenario and how Django protects against this in the practical and review later.
+
+---
+## Directory Traversal and Remote Code Execution
 
 <img src="http://www.mit.edu/~asheesh/sec-talk/moinmoin.png">
 
 Note:
- - Subset of improper authorization checking
+ - Subset of improper authorization checking and dependency permissions.
+ - MoinMoin is a wiki engine. The Python and Debian wikis both used to use this software.
+ - It had an extensive set of plugins, including one called TWikiDraw, that allowed you to create and edits drawings
+  for the wiki.
 
 ---
+
+## TWikiDraw
 
 <img src="http://twiki.org/p/pub/Plugins/TWikiDrawPlugin/screenshot.png">
 
@@ -351,6 +369,9 @@ Note:
 * GET /?action=twikidraw&do=modify&target=image.tar
 * => Response: file_auth_ticket
     * e.g. fe3321bcda
+
+Note:
+- To actually edit an image, first you acquired an auth token (TWikiDraw would check your permissions)
 
 ---
 
@@ -362,6 +383,10 @@ then
 
 * POST /?action=twikidraw&do=save&ticket=file_auth_ticket
 * &target=image.tar
+
+Note:
+- Then you used that token (ticket) to confirm you had permission to edit that image and save it
+
 ---
 
 * GET /?action=twikidraw&do=modify
@@ -372,7 +397,14 @@ then
 * POST /?action=twikidraw&do=save&ticket=file_auth_ticket
 * &target=../../../plugin/action/moinexec.py
 
+Note:
+- Couple of things wrong here
+- Directory traversal and what else?
+- Could have associated the original target with the auth ticket and not allowed user to edit anything else
+
 ---
+
+## Now that we've planted our new "plugin"
 
 GET /?action=moinexec&c=**whatever**
 
@@ -385,8 +417,14 @@ GET /?action=moinexec&c=rm%20-rf%20/
 # Impact
 
 * wiki.python.org & wiki.debian.org
-* polyglot file + dir traversal =>
-    * remote code execution
+* remote code execution
+
+---
+
+## Remote code execution
+## Vulnerable Dependencies
+
+### Questions?
 
 ---
 
@@ -399,14 +437,14 @@ GET /?action=moinexec&c=rm%20-rf%20/
 ## Summary
 
 * Cross-site scripting (TweetDeck)
-* Security misconfiguration (default password)
+* Security misconfiguration / authentication weaknesses (default password)
 
 ---
 
 ## Summary
 
 * Cross-site scripting (TweetDeck)
-* Security misconfiguration (default password)
+* Security misconfiguration / authentication weaknesses (default password)
 * Cross-site request forgery (GET to delete)
 
 ---
@@ -414,21 +452,25 @@ GET /?action=moinexec&c=rm%20-rf%20/
 ## Summary
 
 * Cross-site scripting (TweetDeck)
-* Security misconfiguration (default password)
+* Security misconfiguration / authentication weaknesses (default password)
 * Cross-site request forgery (GET to delete)
 * Code injection / directory traversal (MoinMoin bug)
+
+Note:
+
+- We'll cover some other vulnerability classes like SQL injection and insecure deserialization in the practical
 
 ---
 
 ## What's next
 
-* 15 minutes of Google Dorking
+* 15 minutes of "Google Dorking"
 * Think (5m), Pair (5m), Share (5m)
 * https://www.exploit-db.com/google-hacking-database
 
 ---
 
-## (Aside) What are Google Dorks?
+## What are Google Dorks?
 
 > Google hacking, also named Google dorking, is a computer hacking technique that uses Google Search and other Google 
 > applications to find security holes in the configuration and computer code that websites use.
@@ -438,20 +480,23 @@ GET /?action=moinexec&c=rm%20-rf%20/
 - [The original page](https://web.archive.org/web/20021208144443/http://johnny.ihackstuff.com/security/googleDorks.shtml)
 
 ---
+## https://www.exploit-db.com/google-hacking-database
 
-# Google Dorking results
+---
+# Results
 
 What did people find?
 
 ---
 
-## Another aside: Shodan
+## Shodan: Google for other ports (FTP, printers, routers, etc.)
 
 [Popular Shodan Searches](https://www.shodan.io/explore/popular)
 
 Note:
 
 - Shodan is for other ports what Google is for 80/443
+- IoT
 
 ---
 
@@ -476,7 +521,7 @@ Note:
 
 ---
 
-# Let's break some websites!
+# The Fun Part
 
 ## Go to http://pettwitter.com
 
